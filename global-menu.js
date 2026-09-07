@@ -1,6 +1,15 @@
 (function () {
+  if (window.__globalMenuInitialized) return;
+  window.__globalMenuInitialized = true;
+
   const GLOBAL_MENU_ID = 'globalSideMenu';
   const BACKDROP_ID = 'globalMenuBackdrop';
+
+  function siteHref(path) {
+    const script = document.querySelector('script[src*="global-menu.js"]');
+    const siteRoot = script ? new URL('.', script.src).href : window.location.href;
+    return new URL(path, siteRoot).href;
+  }
 
   function cleanupLegacyMenus() {
     document.querySelectorAll('.side-menu').forEach((menu) => {
@@ -53,43 +62,46 @@
     const tree = document.createElement('ul');
     tree.className = 'global-menu-tree';
     tree.appendChild(buildMenuItem('INICIO', null, [
-      { href: 'index.html' }
+      { href: siteHref('index.html') }
     ]));
     tree.appendChild(buildMenuItem('INSTITUCIÓN', [
-      { label: 'Sobre Nosotros', href: 'NuestroColegio.html#quienes-somos' },
-      { label: 'Nuestra Trayectoria', href: 'NuestroColegio.html#trayectoria' },
-      { label: 'Misión y Valores', href: 'NuestroColegio.html#mision' }
+      { label: 'Sobre Nosotros', href: siteHref('NuestroColegio.html#quienes-somos') },
+      { label: 'Nuestra Trayectoria', href: siteHref('NuestroColegio.html#trayectoria') },
+      { label: 'Misión y Valores', href: siteHref('NuestroColegio.html#mision') }
     ]));
     tree.appendChild(buildMenuItem('NIVELES - CATEGORÍAS', [
       { label: 'Nivel Inicial', children: [
-        { label: 'Información General', href: 'NivelInicial.html#bienvenida' },
-        { label: 'Orientaciones', href: 'NivelInicial.html#especialidades' },
-        { label: 'Uniforme', href: 'NivelInicial.html#uniforme' },
-        { label: 'Inscripción', href: 'NivelInicial.html#requerimientos' }
+        { label: 'Información General', href: siteHref('NivelInicial.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelInicial.html#especialidades') },
+        { label: 'Uniforme', href: siteHref('NivelInicial.html#uniforme') },
+        { label: 'Inscripción', href: siteHref('NivelInicial.html#requerimientos') },
+        { label: 'Proyectos', href: siteHref('Proyectos.html') }
       ]},
       { label: 'Nivel Primario', children: [
-        { label: 'Información General', href: 'NivelPrimario.html#bienvenida' },
-        { label: 'Orientaciones', href: 'NivelPrimario.html#especialidades' },
-        { label: 'Uniforme', href: 'NivelPrimario.html#uniforme' },
-        { label: 'Inscripción', href: 'NivelPrimario.html#requerimientos' }
+        { label: 'Información General', href: siteHref('NivelPrimario.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelPrimario.html#especialidades') },
+        { label: 'Uniforme', href: siteHref('NivelPrimario.html#uniforme') },
+        { label: 'Inscripción', href: siteHref('NivelPrimario.html#requerimientos') },
+        { label: 'Proyectos', href: siteHref('Proyectos.html') }
       ]},
       { label: 'Nivel Secundario', children: [
-        { label: 'Información General', href: 'NivelSecundario.html#bienvenida' },
-        { label: 'Orientaciones', href: 'NivelSecundario.html#especialidades' },
-        { label: 'Uniforme', href: 'NivelSecundario.html#uniforme' },
-        { label: 'Inscripción', href: 'NivelSecundario.html#requerimientos' }
+        { label: 'Información General', href: siteHref('NivelSecundario.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelSecundario.html#especialidades') },
+        { label: 'Uniforme', href: siteHref('NivelSecundario.html#uniforme') },
+        { label: 'Inscripción', href: siteHref('NivelSecundario.html#requerimientos') },
+        { label: 'Proyectos', href: siteHref('Proyectos.html') }
       ]},
       { label: 'Nivel Terciario', children: [
-        { label: 'Información General', href: 'NivelTerciario.html#bienvenida' },
-        { label: 'Orientaciones', href: 'NivelTerciario.html#especialidades' },
-        { label: 'Uniforme', href: 'NivelTerciario.html#uniforme' },
-        { label: 'Inscripción', href: 'NivelTerciario.html#requerimientos' }
+        { label: 'Información General', href: siteHref('NivelTerciario.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelTerciario.html#especialidades') },
+        { label: 'Uniforme', href: siteHref('NivelTerciario.html#uniforme') },
+        { label: 'Inscripción', href: siteHref('NivelTerciario.html#requerimientos') },
+        { label: 'Proyectos', href: siteHref('Proyectos.html') }
       ]}
     ]));
     tree.appendChild(buildMenuItem('EXPLORÁ', [
-      { label: 'Proyectos', href: 'Proyectos.html' },
-      { label: 'Contacto', href: 'Contacto.html#info-contacto' },
-      { label: 'Inscripciones 2027', href: 'Inscripcion2027.html' }
+      { label: 'Contacto', href: siteHref('Contacto.html#info-contacto') },
+      { label: 'Inscripciones 2027', href: siteHref('Inscripcion2027.html') }
     ]));
 
     menu.appendChild(header);
@@ -178,15 +190,25 @@
   window.toggleMenu = toggleGlobalMenu;
 
   function bindTrigger() {
-    document.querySelectorAll('.menu-icon').forEach((icon) => {
-      icon.removeAttribute('onclick');
-      icon.addEventListener('click', () => toggleGlobalMenu());
-    });
+    document.addEventListener('click', (event) => {
+      const icon = event.target.closest('.menu-icon');
+      if (!icon) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      toggleGlobalMenu();
+    }, true);
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function init() {
     cleanupLegacyMenus();
     initGlobalMenu();
     bindTrigger();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
 })();
