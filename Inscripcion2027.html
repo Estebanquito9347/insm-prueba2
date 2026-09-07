@@ -1220,13 +1220,9 @@
 					<div class="contact-form-col" id="form-inscripcion">
 						<h2>Formulario de Inscripción</h2>
 						<form
-							action="https://formsubmit.co/esteban.ruiz.sec@institutolamerced.edu.ar"
+							action="TU_URL_DE_APPS_SCRIPT_AQUI"
 							method="POST"
 						>
-							<input type="hidden" name="_captcha" value="false" />
-							<input type="hidden" name="_language" value="es" />
-							<input type="hidden" name="_subject" value="Nueva Inscripción 2027 - Sitio Web" />
-							<input type="text" name="_honey" style="display: none" />
 
 							<fieldset class="inscripcion-fieldset">
 								<legend>Datos del Alumno/a</legend>
@@ -1265,6 +1261,14 @@
 										<option value="Nivel Primario">Nivel Primario</option>
 										<option value="Nivel Secundario">Nivel Secundario</option>
 										<option value="Nivel Terciario">Nivel Terciario</option>
+									</select>
+								</div>
+								<div class="form-group" id="orientacion-group" style="display: none;">
+									<label for="orientacion">Orientación</label>
+									<select id="orientacion" name="Orientación">
+										<option value="" disabled selected>Seleccioná una opción</option>
+										<option value="Humanidades">Humanidades</option>
+										<option value="Informática">Informática</option>
 									</select>
 								</div>
 							</fieldset>
@@ -1480,14 +1484,6 @@
 
 			document.addEventListener('DOMContentLoaded', () => {
 				runHeroAnimation();
-				
-				// Verificación de IDs Críticos del DOM
-				const criticalIDs = ['dropdownMenu'];
-				criticalIDs.forEach(id => {
-					if (!document.getElementById(id)) {
-						console.error(`Error: El contenedor esencial con ID '${id}' no fue encontrado en el DOM.`);
-					}
-				});
 			});
 
 			// --- Lógica del Slider Lateral (Índice) ---
@@ -1629,46 +1625,21 @@
 				currentYearEl.textContent = new Date().getFullYear();
 			}
 
-					(function () {
-						Promise.resolve(null).then(function (token) {
-							const formData = new FormData(contactFormAjax);
-							const data = Object.fromEntries(formData);
-							data['_subject'] = 'Nueva Inscripción 2027 - Sitio Web';
-
-							fetch(contactFormAjax.action, {
-								method: 'POST',
-								headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-								body: JSON.stringify(data),
-							})
-							.then((response) => {
-								if (response.ok) {
-									responseDiv.textContent = '¡Gracias! Tu inscripción ha sido enviada con éxito. Nos pondremos en contacto a la brevedad.';
-									responseDiv.classList.add('response-success');
-									contactFormAjax.reset();
-								} else {
-									console.error('Error en el envío del formulario (FormSubmit):', response);
-									throw new Error('Error en la respuesta del servidor');
-								}
-							})
-							.catch((error) => {
-								console.error('Error completo del objeto de red/API:', error);
-								responseDiv.textContent = 'Lo sentimos, hubo un problema. Por favor, reintenta.';
-								responseDiv.classList.add('response-error');
-							})
-							.finally(() => {
-								submitBtn.disabled = false;
-								submitBtn.textContent = 'Enviar Inscripción';
-								responseDiv.style.display = 'block';
-							});
-						}).catch(function(err) {
-							console.error('Error al generar el token de reCAPTCHA:', err);
-							responseDiv.textContent = 'Error de validación de seguridad.';
-							responseDiv.classList.add('response-error');
-							responseDiv.style.display = 'block';
-							submitBtn.disabled = false;
-							submitBtn.textContent = 'Enviar Inscripción';
-						});
-					});
+			const alumnoNivelSelect = document.getElementById('alumno-nivel');
+			if (alumnoNivelSelect) {
+				alumnoNivelSelect.addEventListener('change', function () {
+					const orientacionGroup = document.getElementById('orientacion-group');
+					const orientacionSelect = document.getElementById('orientacion');
+					if (this.value === 'Nivel Secundario') {
+						orientacionGroup.style.display = 'block';
+						orientacionSelect.required = true;
+					} else {
+						orientacionGroup.style.display = 'none';
+						orientacionSelect.required = false;
+						orientacionSelect.value = '';
+					}
+				});
+			}
 		</script>
 			<script src="global-menu.js"></script>
 	</body>
