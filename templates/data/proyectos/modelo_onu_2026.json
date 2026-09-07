@@ -1,0 +1,27 @@
+{
+    "hero": {
+        "titleLine1": "Modelo de las",
+        "titleLine2": "Naciones Unidas",
+        "backgroundImage": "../img/modelo_onu_2026_hero.jpg"
+    },
+    "general": {
+        "date": "21 de Agosto de 2026",
+        "summary": "\"Modelo de Naciones Unidas, una experiencia de debate y oratoria donde la palabra, el acuerdo y el espíritu mercedario fueron los grandes protagonistas.\"",
+        "detail": "Distintos cursos formaron parte del proyecto del Modelo de las Naciones Unidas y, a lo largo de un proceso de un par de meses, los chicos se prepararon investigando sobre geopolítica, redactando resoluciones y ensayando discursos. Lo que empezó como una idea lejana en el aula fue tomando forma con cada ensayo y debate cruzado, hasta llegar a las jornadas donde la palabra y el acuerdo fueron los grandes protagonistas de este cierre de año con espíritu mercedario.",
+        "image": "../img/modelo_onu_2026_portada.jpg"
+    },
+    "academic": {
+        "value1": "Promoción 2026 Humanidades",
+        "value2": "Andrea Miretti y Ana Luz Torresi",
+        "value3": "Humanidades e Informática",
+        "icon3": "fas fa-globe-americas"
+    },
+    "gallery": [
+        "../img/modelo_onu_2026_1.jpg",
+        "../img/modelo_onu_2026_2.jpg",
+        "../img/modelo_onu_2026_3.jpg",
+        "../img/modelo_onu_2026_4.jpg",
+        "../img/modelo_onu_2026_5.jpg",
+        "../img/modelo_onu_2026_6.jpg"
+    ]
+}

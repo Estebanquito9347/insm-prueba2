@@ -1,0 +1,28 @@
+{
+    "hero": {
+        "titleLine1": "Copa Robótica",
+        "titleLine2": "Edición 2026",
+        "backgroundImage": "../img/copa_robotica_2026_hero.jpg"
+    },
+    "general": {
+        "date": "13 de Agosto de 2026",
+        "summary": "\"Mucho más que circuitos y programación: la Copa Robótica unió a los cursos de Informática en una experiencia federal que despertó su autonomía, orgullo institucional y pasión por crear el futuro.\"",
+        "detail": "Desde la especialidad de informática formaron parte del proyecto de la Copa Robótica, la competencia tecnológica y federal más importante del país. Representó vivir valores humanos que transformaron a los estudiantes de diferentes cursos. En el corazón del proyecto estuvo el compañerismo intergeneracional y la colaboración estratégica.",
+        "image": "../img/copa_robotica_2026_portada.jpg"
+    },
+    "academic": {
+        "value1": "Promoción 2026 Informática",
+        "value2": "Prof. Apellido",
+        "value3": "Informática",
+        "icon3": "fas fa-robot"
+    },
+    "gallery": [
+        "../img/copa_robotica_2026_1.jpg",
+        "../img/copa_robotica_2026_2.jpg",
+        "../img/copa_robotica_2026_3.jpg",
+        "../img/copa_robotica_2026_4.jpg",
+        "../img/copa_robotica_2026_5.jpg",
+        "../img/copa_robotica_2026_6.jpg"
+
+    ]
+}
