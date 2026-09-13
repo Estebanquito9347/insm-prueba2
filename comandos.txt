@@ -1,0 +1,37 @@
+🐧 Comandos para Linux (Fedora / Ubuntu / etc.)
+1. Iniciar el servidor normalmente
+Bash
+node app.js
+2. Liberar el puerto 3000 (si te da el error EADDRINUSE)
+Bash
+fuser -k 3000/tcp
+3. Gestionar con PM2 (Segundo plano)
+Iniciar la app: pm2 start app.js --name "insm-backend"
+
+Ver estado: pm2 status
+
+Reiniciar: pm2 restart insm-backend
+
+Detener todo: pm2 stop all / pm2 delete all
+
+Ver logs (registros): pm2 logs insm-backend
+
+🪟 Comandos para Windows (CMD o PowerShell)
+1. Iniciar el servidor normalmente
+DOS
+node app.js
+2. Liberar el puerto 3000 (si está ocupado)
+La forma más fácil y universal con Node instalado:
+
+DOS
+npx kill-port 3000
+(Si no tenés internet en ese momento para npx, el comando nativo en CMD es buscar el PID y matarlo: netstat -ano | findstr :3000 y luego taskkill /F /PID <número>).
+
+3. Gestionar con PM2 (Funciona igual en Windows)
+Iniciar la app: pm2 start app.js --name "insm-backend"
+
+Ver estado: pm2 status
+
+Reiniciar: pm2 restart insm-backend
+
+Detener todo: pm2 stop all

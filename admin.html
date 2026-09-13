@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - INSM</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .btn-refresh {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-refresh:hover {
+            background-color: #2980b9;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>📋 Inscripciones Recibidas - INSM</h1>
+            <button class="btn-refresh" onclick="cargarInscripciones()">Actualizar Lista</button>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Alumno/a</th>
+                        <th>DNI Alumno</th>
+                        <th>Nivel / Año</th>
+                        <th>Tutor Responsable</th>
+                        <th>Teléfono Tutor</th>
+                        <th>Boletín</th>
+                    </tr>
+                </thead>
+                <tbody id="tabla-cuerpo">
+                    <tr>
+                        <td colspan="7" class="no-data">Cargando inscripciones...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        async function cargarInscripciones() {
+            const tbody = document.getElementById('tabla-cuerpo');
+            tbody.innerHTML = `<tr><td colspan="7" class="no-data">Cargando inscripciones...</td></tr>`;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/inscripciones');
+                if (!response.ok) throw new Error('http://localhost:3000/api/inscripciones');
+                
+                const datos = await response.json();
+
+                if (datos.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="no-data">No hay inscripciones registradas todavía.</td></tr>`;
+                    return;
+                }
+
+                tbody.innerHTML = '';
+                datos.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><strong>#${item.id}</strong></td>
+                        <td>${item.nombre} ${item.apellido}</td>
+                        <td>${item.dni}</td>
+                        <td><span class="badge">Nivel ${item.nivel_id} - Año ${item.anio_id}</span></td>
+                        <td>${item.tutor_nombre} ${item.tutor_apellido}</td>
+                        <td>${item.tutor_telefono}</td>
+                        <td>
+                            ${item.boletin_path 
+                                ? `<a href="http://localhost:3000/uploads/${item.boletin_path}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">📄 Ver Archivo</a>` 
+                                : '<span style="color: #94a3b8;">Sin archivo</span>'}
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+            } catch (error) {
+                console.error(error);
+                tbody.innerHTML = `<tr><td colspan="7" class="no-data" style="color: #e74c3c;">Error al cargar los datos del servidor.</td></tr>`;
+            }
+        }
+
+        // Cargar al abrir la página
+        cargarInscripciones();
+    </script>
+
+</body>
+</html>
