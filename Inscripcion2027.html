@@ -1219,98 +1219,98 @@
 					</div>
 					<div class="contact-form-col" id="form-inscripcion">
 						<h2>Formulario de Inscripción</h2>
-						<form
-							action="TU_URL_DE_APPS_SCRIPT_AQUI"
-							method="POST"
-						>
+						<form id="formInscripcion" enctype="multipart/form-data"></form>
 
 							<fieldset class="inscripcion-fieldset">
 								<legend>Datos del Alumno/a</legend>
-								<div class="form-group">
-									<label for="alumno-nombre">Nombre y Apellido del Alumno/a</label>
-									<input
-										type="text"
-										id="alumno-nombre"
-										name="Alumno - Nombre y Apellido"
-										required
-										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
-										oninput="this.setCustomValidity('')"
-									/>
-								</div>
-								<div class="form-row">
-									<div class="form-group">
-										<label for="alumno-dni">DNI del Alumno/a</label>
-										<input type="text" id="alumno-dni" name="Alumno - DNI" required />
-									</div>
-									<div class="form-group">
-										<label for="alumno-nacimiento">Fecha de Nacimiento</label>
-										<input
-											type="date"
-											id="alumno-nacimiento"
-											name="Alumno - Fecha de Nacimiento"
-											required
-										/>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="alumno-nivel">Nivel al que aspira ingresar</label>
-									<select id="alumno-nivel" name="Nivel al que aspira" required>
-										<option value="" disabled selected>Seleccioná una opción</option>
-										<option value="Nivel Inicial">Nivel Inicial</option>
-										<option value="Nivel Primario">Nivel Primario</option>
-										<option value="Nivel Secundario">Nivel Secundario</option>
-										<option value="Nivel Terciario">Nivel Terciario</option>
-									</select>
-								</div>
-								<div class="form-group" id="orientacion-group" style="display: none;">
-									<label for="orientacion">Orientación</label>
-									<select id="orientacion" name="Orientación">
-										<option value="" disabled selected>Seleccioná una opción</option>
-										<option value="Humanidades">Humanidades</option>
-										<option value="Informática">Informática</option>
-									</select>
-								</div>
-							</fieldset>
+								
 
 							<fieldset class="inscripcion-fieldset">
 								<legend>Datos del Responsable 1 (Padre/Madre/Tutor)</legend>
+								<div class="form-row">
 								<div class="form-group">
-									<label for="resp1-nombre">Nombre y Apellido</label>
+									<label for="alumno-nombre">Nombre del Alumno/a</label>
 									<input
 										type="text"
-										id="resp1-nombre"
-										name="Responsable 1 - Nombre y Apellido"
+										id="alumno-nombre"
+										name="nombre"
 										required
 										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
 										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
 										oninput="this.setCustomValidity('')"
 									/>
 								</div>
-								<div class="form-row">
-									<div class="form-group">
-										<label for="resp1-dni">DNI</label>
-										<input type="text" id="resp1-dni" name="Responsable 1 - DNI" required />
-									</div>
-									<div class="form-group">
-										<label for="resp1-telefono">Teléfono</label>
-										<input
-											type="tel"
-											id="resp1-telefono"
-											name="Responsable 1 - Teléfono"
-											required
-										/>
-									</div>
+								<div class="form-group">
+									<label for="alumno-apellido">Apellido del Alumno/a</label>
+									<input
+										type="text"
+										id="alumno-apellido"
+										name="apellido"
+										required
+										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
+										oninput="this.setCustomValidity('')"
+									/>
+								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group">
+									<label for="alumno-dni">DNI del Alumno/a</label>
+									<input type="text" id="alumno-dni" name="dni" required />
 								</div>
 								<div class="form-group">
-									<label for="resp1-email">Correo Electrónico</label>
+									<label for="alumno-nacimiento">Fecha de Nacimiento</label>
 									<input
-										type="email"
-										id="resp1-email"
-										name="Responsable 1 - Correo Electrónico"
+										type="date"
+										id="alumno-nacimiento"
+										name="fecha_nacimiento"
 										required
 									/>
 								</div>
+							</div>
+
+							<div class="form-row">
+								<div class="form-group">
+									<label for="alumno-nivel">Nivel al que aspira ingresar</label>
+									<select id="alumno-nivel" name="nivel_id" required>
+										<option value="" disabled selected>Seleccioná una opción</option>
+										<option value="1">Nivel Inicial</option>
+										<option value="2">Nivel Primario</option>
+										<option value="3">Nivel Secundario</option>
+										<option value="4">Nivel Terciario</option>
+									</select>
+								</div>
+
+								<div class="form-group" id="anio-group">
+									<label for="alumno-anio">Año a cursar</label>
+									<select id="alumno-anio" name="anio_id" required>
+										<option value="" disabled selected>Seleccioná el año</option>
+										<option value="1">1er Año</option>
+										<option value="2">2do Año</option>
+										<option value="3">3er Año</option>
+										<option value="4">4to Año</option>
+										<option value="5">5to Año</option>
+										<option value="6">6to Año</option>
+									</select>
+								</div>
+							</div>
+
+							<!-- Orientación: Se muestra únicamente si selecciona Secundario (ID 3) y Año 4, 5 o 6 -->
+							<div class="form-group" id="orientacion-group" style="display: none;">
+								<label for="orientacion">Orientación / Especialidad</label>
+								<select id="orientacion" name="orientacion_id">
+									<option value="" disabled selected>Seleccioná una opción</option>
+									<option value="2">Informática</option>
+									<option value="3">Humanidades</option>
+								</select>
+							</div>
+
+							<!-- Comprobante / Boletín para verificar veracidad -->
+							<div class="form-group">
+								<label for="boletin">Boletín de calificaciones o comprobante de regularidad (PDF o Foto)</label>
+								<input type="file" id="boletin" name="boletin" accept=".pdf,image/*" required />
+							</div>
 							</fieldset>
 
 							<fieldset class="inscripcion-fieldset responsable-2">
@@ -1430,217 +1430,73 @@
 		
 
 		<script>
-			// --- Animación Hero (Letra por Letra) ---
-			function runHeroAnimation() {
-				const heroContent = document.querySelector('.hero-content');
-				if (!heroContent) return;
-
-				const heroH1 = heroContent.querySelector('h1');
-				const paragraph = heroContent.querySelector('p');
-
-				if (!heroH1 || !paragraph) return;
-
-				// Hacer visibles los contenedores
-				heroH1.style.visibility = 'visible';
-				paragraph.style.visibility = 'visible';
-
-				// Solo envolver letras si no se ha hecho antes
-				if (heroH1.querySelectorAll('.letter').length === 0) {
-					const wrapLetters = (node) => {
-						if (node.nodeType === Node.TEXT_NODE) {
-							const text = node.textContent.trim();
-							if (!text) return;
-							const fragment = document.createDocumentFragment();
-							[...node.textContent].forEach((char) => {
-								const span = document.createElement('span');
-								span.textContent = char;
-								span.className = 'letter';
-								fragment.appendChild(span);
-							});
-							node.parentNode.replaceChild(fragment, node);
-						} else if (node.nodeType === Node.ELEMENT_NODE) {
-							Array.from(node.childNodes).forEach(wrapLetters);
-						}
-					};
-					wrapLetters(heroH1);
-				}
-
-				// Reiniciar y Aplicar Animación con Stagger
-				const letters = heroH1.querySelectorAll('.letter');
-				let delay = 100;
-				const stagger = 40;
-
-				letters.forEach((letter) => {
-					letter.style.animation = 'none';
-					void letter.offsetWidth; // Force reflow
-					letter.style.animation = `riseIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) ${delay}ms both`;
-					delay += stagger;
-				});
-
-				paragraph.style.animation = 'none';
-				void paragraph.offsetWidth; // Force reflow
-				paragraph.style.animation = `riseIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) ${delay + 200}ms both`;
-			}
-
-			document.addEventListener('DOMContentLoaded', () => {
-				runHeroAnimation();
-			});
-
-			// --- Lógica del Slider Lateral (Índice) ---
-			function toggleSideMenu() {
-				const sideMenu = document.getElementById('sideMenu');
-				const linksContainer = document.querySelector('.side-menu-links');
-				if (sideMenu) {
-					const isActive = sideMenu.classList.toggle('active');
-					
-					// Bloqueo de scroll en HTML y BODY para máxima compatibilidad
-					document.documentElement.classList.toggle('no-scroll');
-					document.body.classList.toggle('no-scroll');
-
-					if (isActive && linksContainer) {
-						// Asegurar que el scrollbar se reconozca inmediatamente
-						linksContainer.scrollTop = 1;
-						linksContainer.scrollTop = 0;
-					}
-				}
-			}
-
-			// Vincular el icono de menú del header al slider
-			document.addEventListener('DOMContentLoaded', () => {
-				const menuIcon = document.querySelector('.header-main .menu-icon');
-				if (menuIcon) {
-					// Quitamos el onclick inline si existiera y asignamos el nuevo
-					menuIcon.removeAttribute('onclick');
-					menuIcon.addEventListener('click', toggleSideMenu);
-				}
-			});
-
-			// Cerrar con tecla Escape
-			document.addEventListener('keydown', function (e) {
-				if (e.key === 'Escape') {
-					const sideMenu = document.getElementById('sideMenu');
-					if (sideMenu && sideMenu.classList.contains('active')) {
-						sideMenu.classList.remove('active');
-						document.documentElement.classList.remove('no-scroll');
-						document.body.classList.remove('no-scroll');
-					}
-				}
-			});
-
-			// --- Lógica del Menú Desplegable (Global) ---
-			function toggleMenu() {
-				const menu = document.getElementById('dropdownMenu');
-				menu.classList.toggle('show');
-			}
-
-			document.addEventListener('keydown', function (e) {
-				if (e.key === 'Escape') {
-					const menu = document.getElementById('dropdownMenu');
-					menu.classList.remove('show');
-				}
-			});
-
-			// --- Efecto Parallax / Zoom al hacer Scroll (Hero Section) ---
-			document.addEventListener(
-				'scroll',
-				() => {
-					const sideMenu = document.getElementById('sideMenu');
-					if (sideMenu && sideMenu.classList.contains('active')) return;
-
-					const heroSection = document.querySelector('.hero-section');
-					if (!heroSection) return;
-
-					const scrollPosition = Math.max(0, window.scrollY);
-					const windowHeight = window.innerHeight;
-
-					// Solo calcular si estamos cerca del Hero (optimización)
-					if (scrollPosition <= windowHeight) {
-						// Zoom lineal suave: escala de forma constante y fluida
-						const scale = 1 + scrollPosition * 0.00015;
-						heroSection.style.setProperty('--hero-scale', scale);
-					}
-				},
-				{ passive: true }
-			);
-
-			function scrollToTopSmooth() {
-				const startPosition = window.pageYOffset;
-				const duration = 2000;
-				let startTime = null;
-
-				function animation(currentTime) {
-					if (startTime === null) startTime = currentTime;
-					const timeElapsed = currentTime - startTime;
-					const progress = Math.min(timeElapsed / duration, 1);
-					const easeInOutQuad = progress < 0.5 ? 2 * progress * progress : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-					window.scrollTo(0, startPosition * (1 - easeInOutQuad));
-					if (progress < 1) requestAnimationFrame(animation);
-				}
-				requestAnimationFrame(animation);
-			}
-
-			// --- Transición entre Páginas ---
-			if ('history' in window && 'scrollRestoration' in history) {
-				history.scrollRestoration = 'manual';
-			}
-
-			window.addEventListener('pageshow', function (event) {
-				if (event.persisted) {
-					// Si la página se carga desde el historial (bfcache)
-					document.body.classList.remove('fade-out');
-					
-					// Forzamos el reinicio de la animación de entrada
-					document.body.style.animation = 'none';
-					void document.body.offsetWidth;
-					document.body.style.animation = '';
-					// Reiniciar animaciones del Hero
-					runHeroAnimation();
-					}
-					});
-
-			document.addEventListener('DOMContentLoaded', function () {
-				const links = document.querySelectorAll('a');
-				links.forEach((link) => {
-					link.addEventListener('click', function (e) {
-						const href = this.getAttribute('href');
-						if (href && !href.startsWith('#') && !link.onclick && !href.includes('mailto:') && !href.includes('tel:') && this.getAttribute('target') !== '_blank') {
-							// Ignorar si el usuario presionó una tecla de modificación para abrir en nueva pestaña
-							if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
-
-							e.preventDefault();
-							// Esperamos 120ms para que la animación física de pulsado se complete visualmente
-							setTimeout(() => {
-								document.body.classList.add('fade-out');
-								setTimeout(() => {
-									window.location.href = href;
-								}, 500); // 500ms exactos para completar la transición de opacidad en CSS
-							}, 120);
-						}
-					});
-				});
-			});
-
-			const currentYearEl = document.getElementById('current-year');
-			if (currentYearEl) {
-				currentYearEl.textContent = new Date().getFullYear();
-			}
-
+			// --- Lógica de visibilidad según Nivel y Año ---
 			const alumnoNivelSelect = document.getElementById('alumno-nivel');
-			if (alumnoNivelSelect) {
-				alumnoNivelSelect.addEventListener('change', function () {
-					const orientacionGroup = document.getElementById('orientacion-group');
-					const orientacionSelect = document.getElementById('orientacion');
-					if (this.value === 'Nivel Secundario') {
-						orientacionGroup.style.display = 'block';
-						orientacionSelect.required = true;
-					} else {
-						orientacionGroup.style.display = 'none';
-						orientacionSelect.required = false;
-						orientacionSelect.value = '';
-					}
-				});
+			const alumnoAnioSelect = document.getElementById('alumno-anio');
+			const orientacionGroup = document.getElementById('orientacion-group');
+			const orientacionSelect = document.getElementById('orientacion');
+
+			function actualizarVisibilidadOrientacion() {
+				const nivel = alumnoNivelSelect.value;
+				const anio = alumnoAnioSelect.value;
+
+				// Solo pide orientación en Secundario (3) para 4°, 5° y 6° año
+				if (nivel === '3' && ['4', '5', '6'].includes(anio)) {
+					orientacionGroup.style.display = 'block';
+					orientacionSelect.required = true;
+				} else {
+					orientacionGroup.style.display = 'none';
+					orientacionSelect.required = false;
+					orientacionSelect.value = '';
+				}
 			}
+
+			alumnoNivelSelect.addEventListener('change', actualizarVisibilidadOrientacion);
+			alumnoAnioSelect.addEventListener('change', actualizarVisibilidadOrientacion);
+
+			// --- Envío del formulario al Backend en Node.js ---
+			const formInscripcion = document.getElementById('formInscripcion');
+
+			formInscripcion.addEventListener('submit', async (e) => {
+				e.preventDefault();
+
+				const formData = new FormData(formInscripcion);
+				formData.append('ciclo_lectivo', '2027');
+
+				const submitBtn = formInscripcion.querySelector('button[type="submit"]');
+				if (submitBtn) {
+					submitBtn.disabled = true;
+					submitBtn.textContent = 'Procesando inscripción...';
+				}
+
+				try {
+					// Enlace al servidor local en Node.js
+					const response = await fetch('http://localhost:3000/api/inscripciones', {
+						method: 'POST',
+						body: formData
+					});
+
+					const data = await response.json();
+
+					if (!response.ok) {
+						throw new Error(data.error || 'Error al procesar la inscripción.');
+					}
+
+					alert(`¡Inscripción exitosa! ${data.mensaje}`);
+					formInscripcion.reset();
+					orientacionGroup.style.display = 'none';
+
+				} catch (error) {
+					alert(`Error: ${error.message}`);
+				} finally {
+					if (submitBtn) {
+						submitBtn.disabled = false;
+						submitBtn.textContent = 'Enviar Inscripción';
+					}
+				}
+			});
 		</script>
 			<script src="global-menu.js"></script>
+		
 	</body>
 </html>
