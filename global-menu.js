@@ -75,28 +75,28 @@
         { label: 'Orientaciones', href: siteHref('NivelInicial.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelInicial.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelInicial.html#requerimientos') },
-        { label: 'Proyectos', href: siteHref('Proyectos.html') }
+        { label: 'Proyectos', href: siteHref('ProyectosInicial.html') }
       ]},
       { label: 'Nivel Primario', children: [
         { label: 'Información General', href: siteHref('NivelPrimario.html#bienvenida') },
         { label: 'Orientaciones', href: siteHref('NivelPrimario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelPrimario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelPrimario.html#requerimientos') },
-        { label: 'Proyectos', href: siteHref('Proyectos.html') }
+        { label: 'Proyectos', href: siteHref('ProyectosPrimario.html') }
       ]},
       { label: 'Nivel Secundario', children: [
         { label: 'Información General', href: siteHref('NivelSecundario.html#bienvenida') },
         { label: 'Orientaciones', href: siteHref('NivelSecundario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelSecundario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelSecundario.html#requerimientos') },
-        { label: 'Proyectos', href: siteHref('Proyectos.html') }
+        { label: 'Proyectos', href: siteHref('ProyectosSecundario.html') }
       ]},
       { label: 'Nivel Terciario', children: [
         { label: 'Información General', href: siteHref('NivelTerciario.html#bienvenida') },
         { label: 'Orientaciones', href: siteHref('NivelTerciario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelTerciario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelTerciario.html#requerimientos') },
-        { label: 'Proyectos', href: siteHref('Proyectos.html') }
+        { label: 'Proyectos', href: siteHref('ProyectosTerciario.html') }
       ]}
     ]));
     tree.appendChild(buildMenuItem('EXPLORÁ', [
