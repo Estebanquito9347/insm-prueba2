@@ -1,9 +1,9 @@
 :root {
-    --accent: #8d5d18;
-    --accent-soft: #fff8e9;
-    --ink: #2c2925;
-    --muted: #746d63;
-    --paper: #fffdf8;
+    --accent: #c8102e;
+    --accent-soft: #fff7cc;
+    --ink: #c8102e;
+    --muted: #c8102e;
+    --paper: #ffffff;
 }
 
 @font-face { font-family: 'Heuristica'; src: url('fonts/Heuristica-Regular.ttf') format('truetype'); }

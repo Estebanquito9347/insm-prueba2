@@ -255,14 +255,14 @@ function initVisualEffects() {
         heroTitleContainer.style.visibility = 'visible';
         paragraph.style.visibility = 'visible';
 
-        let delay = 300;
-        const stagger = 40;
-        const duration = 1200;
+        let delay = 260;
+        const stagger = 32;
+        const duration = 1050;
 
         const animateElement = (element) => {
             const letters = element.querySelectorAll('.letter');
             letters.forEach((letter) => {
-                letter.style.animation = `riseIn ${duration}ms cubic-bezier(.2,.9,.3,1) ${delay}ms both`;
+                letter.style.animation = `riseIn ${duration}ms cubic-bezier(.16,.88,.28,1) ${delay}ms both`;
                 delay += stagger;
             });
         };
@@ -271,7 +271,7 @@ function initVisualEffects() {
         animateElement(line2); 
         
         delay += 100;
-        paragraph.style.animation = `riseIn ${duration}ms cubic-bezier(.2,.9,.3,1) ${delay}ms both`;
+        paragraph.style.animation = `riseIn ${duration}ms cubic-bezier(.16,.88,.28,1) ${delay}ms both`;
     }
 
     // --- B. Lógica del Lightbox ---

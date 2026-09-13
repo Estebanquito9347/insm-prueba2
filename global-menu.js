@@ -1,6 +1,5 @@
 (function () {
   if (window.__globalMenuInitialized) return;
-  window.__globalMenuInitialized = true;
 
   const GLOBAL_MENU_ID = 'globalSideMenu';
   const BACKDROP_ID = 'globalMenuBackdrop';
@@ -18,9 +17,12 @@
       }
     });
 
+    document.querySelectorAll('.dropdown-menu').forEach((menu) => menu.remove());
+
     document.querySelectorAll('.menu-icon').forEach((icon) => {
       icon.removeAttribute('onclick');
       icon.setAttribute('data-global-menu-trigger', 'true');
+      icon.querySelectorAll('i').forEach((element) => element.remove());
     });
 
     document.querySelectorAll('[onclick*="toggleSideMenu"]').forEach((element) => {
@@ -68,41 +70,38 @@
       { label: 'Sobre Nosotros', href: siteHref('NuestroColegio.html#quienes-somos') },
       { label: 'Nuestra Trayectoria', href: siteHref('NuestroColegio.html#trayectoria') },
       { label: 'Misión y Valores', href: siteHref('NuestroColegio.html#mision') }
-    ]));
+    ], null, siteHref('NuestroColegio.html#quienes-somos')));
     tree.appendChild(buildMenuItem('NIVELES - CATEGORÍAS', [
       { label: 'Nivel Inicial', children: [
         { label: 'Información General', href: siteHref('NivelInicial.html#bienvenida') },
-        { label: 'Orientaciones', href: siteHref('NivelInicial.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelInicial.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelInicial.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosInicial.html') }
-      ]},
+      ], href: siteHref('NivelInicial.html#bienvenida') },
       { label: 'Nivel Primario', children: [
         { label: 'Información General', href: siteHref('NivelPrimario.html#bienvenida') },
-        { label: 'Orientaciones', href: siteHref('NivelPrimario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelPrimario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelPrimario.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosPrimario.html') }
-      ]},
+      ], href: siteHref('NivelPrimario.html#bienvenida') },
       { label: 'Nivel Secundario', children: [
         { label: 'Información General', href: siteHref('NivelSecundario.html#bienvenida') },
         { label: 'Orientaciones', href: siteHref('NivelSecundario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelSecundario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelSecundario.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosSecundario.html') }
-      ]},
+      ], href: siteHref('NivelSecundario.html#bienvenida') },
       { label: 'Nivel Terciario', children: [
         { label: 'Información General', href: siteHref('NivelTerciario.html#bienvenida') },
-        { label: 'Orientaciones', href: siteHref('NivelTerciario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelTerciario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelTerciario.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosTerciario.html') }
-      ]}
-    ]));
+      ], href: siteHref('NivelTerciario.html#bienvenida') }
+    ], null, siteHref('index.html#niveles')));
     tree.appendChild(buildMenuItem('EXPLORÁ', [
       { label: 'Contacto', href: siteHref('Contacto.html#info-contacto') },
       { label: 'Inscripciones 2027', href: siteHref('Inscripcion2027.html') }
-    ]));
+    ], null, siteHref('Contacto.html#info-contacto')));
 
     menu.appendChild(header);
     menu.appendChild(tree);
@@ -116,32 +115,41 @@
     });
   }
 
-  function buildMenuItem(label, children, singleLink) {
+  function buildMenuItem(label, children, singleLink, sectionHref) {
     const item = document.createElement('li');
     const hasChildren = Array.isArray(children) && children.length > 0;
     item.className = 'global-tree-item' + (hasChildren ? ' has-children' : ' root-item');
 
     if (hasChildren) {
+      const row = document.createElement('div');
+      row.className = 'global-tree-row';
       const button = document.createElement('button');
       button.type = 'button';
-      button.className = 'global-tree-toggle';
+      button.className = 'global-tree-arrow-toggle';
+      button.setAttribute('aria-label', `Abrir ${label}`);
       const arrow = document.createElement('span');
       arrow.className = 'global-tree-arrow';
       arrow.textContent = '▶';
-      const text = document.createElement('span');
-      text.textContent = label;
       button.appendChild(arrow);
-      button.appendChild(text);
+
+      const text = sectionHref ? document.createElement('a') : document.createElement('span');
+      if (sectionHref) {
+        text.href = sectionHref;
+        text.className = 'global-tree-toggle global-tree-link';
+        text.addEventListener('click', () => toggleGlobalMenu(false));
+      }
+      text.textContent = label;
       button.addEventListener('click', () => {
         const parent = button.parentElement;
         parent.classList.toggle('open');
+        button.setAttribute('aria-label', `${parent.classList.contains('open') ? 'Cerrar' : 'Abrir'} ${label}`);
       });
 
       const list = document.createElement('ul');
       list.className = 'global-tree-children';
       children.forEach((child) => {
         if (child.children && Array.isArray(child.children)) {
-          list.appendChild(buildMenuItem(child.label, child.children));
+          list.appendChild(buildMenuItem(child.label, child.children, null, child.href));
         } else {
           const li = document.createElement('li');
           const a = document.createElement('a');
@@ -153,7 +161,9 @@
         }
       });
 
-      item.appendChild(button);
+      row.appendChild(button);
+      row.appendChild(text);
+      item.appendChild(row);
       item.appendChild(list);
     } else if (singleLink && singleLink.length) {
       const link = document.createElement('a');
@@ -200,10 +210,37 @@
     }, true);
   }
 
+  function initPageEffects() {
+    const sections = document.querySelectorAll('main > section:not(.hero-section)');
+    const header = document.querySelector('.header-main');
+
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.12 });
+
+      sections.forEach((section) => sectionObserver.observe(section));
+    } else {
+      sections.forEach((section) => section.classList.add('is-visible'));
+    }
+
+    if (header) {
+      const updateHeader = () => header.classList.toggle('header-scrolled', window.scrollY > 24);
+      updateHeader();
+      window.addEventListener('scroll', updateHeader, { passive: true });
+    }
+  }
+
   function init() {
     cleanupLegacyMenus();
     initGlobalMenu();
     bindTrigger();
+    initPageEffects();
+    window.__globalMenuInitialized = true;
   }
 
   if (document.readyState === 'loading') {

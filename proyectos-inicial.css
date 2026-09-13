@@ -1,9 +1,9 @@
 :root {
-    --accent: #cf0621;
-    --accent-soft: #fff1f3;
-    --ink: #252525;
-    --muted: #66717b;
-    --paper: #fffaf6;
+    --accent: #c8102e;
+    --accent-soft: #fff7cc;
+    --ink: #c8102e;
+    --muted: #c8102e;
+    --paper: #ffffff;
 }
 
 @font-face {
