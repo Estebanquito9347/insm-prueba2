@@ -1,0 +1,13 @@
+# Dependencias de Node
+node_modules/
+
+# Archivos de entorno y credenciales (si usas variables de entorno)
+.env
+
+# Carpeta de archivos subidos por usuarios
+uploads/
+/server/uploads/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db

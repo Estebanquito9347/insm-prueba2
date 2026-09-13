@@ -85,17 +85,6 @@
 				width: 100%;
 				margin-bottom: 15px;
 			}
-			.inscripcion-fieldset.responsable-2 legend {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				border-bottom-color: #ccc;
-			}
-			.inscripcion-fieldset.responsable-2 legend small {
-				font-weight: normal;
-				font-size: 0.75rem;
-				color: #888;
-			}
 			.form-row {
 				display: flex;
 				gap: 15px;
@@ -1219,129 +1208,143 @@
 					</div>
 					<div class="contact-form-col" id="form-inscripcion">
 						<h2>Formulario de Inscripción</h2>
-						<form id="formInscripcion" enctype="multipart/form-data"></form>
+						<form id="formInscripcion" enctype="multipart/form-data">
 
+							<!-- DATOS DEL ALUMNO -->
 							<fieldset class="inscripcion-fieldset">
 								<legend>Datos del Alumno/a</legend>
 								
-
-							<fieldset class="inscripcion-fieldset">
-								<legend>Datos del Responsable 1 (Padre/Madre/Tutor)</legend>
 								<div class="form-row">
-								<div class="form-group">
-									<label for="alumno-nombre">Nombre del Alumno/a</label>
-									<input
-										type="text"
-										id="alumno-nombre"
-										name="nombre"
-										required
-										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
-										oninput="this.setCustomValidity('')"
-									/>
+									<div class="form-group">
+										<label for="alumno-nombre">Nombre del Alumno/a</label>
+										<input
+											type="text"
+											id="alumno-nombre"
+											name="nombre"
+											required
+											pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+											oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
+											oninput="this.setCustomValidity('')"
+										/>
+									</div>
+									<div class="form-group">
+										<label for="alumno-apellido">Apellido del Alumno/a</label>
+										<input
+											type="text"
+											id="alumno-apellido"
+											name="apellido"
+											required
+											pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+											oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
+											oninput="this.setCustomValidity('')"
+										/>
+									</div>
 								</div>
-								<div class="form-group">
-									<label for="alumno-apellido">Apellido del Alumno/a</label>
-									<input
-										type="text"
-										id="alumno-apellido"
-										name="apellido"
-										required
-										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
-										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
-										oninput="this.setCustomValidity('')"
-									/>
-								</div>
-							</div>
 
-							<div class="form-row">
-								<div class="form-group">
-									<label for="alumno-dni">DNI del Alumno/a</label>
-									<input type="text" id="alumno-dni" name="dni" required />
+								<div class="form-row">
+									<div class="form-group">
+										<label for="alumno-dni">DNI del Alumno/a</label>
+										<input type="text" id="alumno-dni" name="dni" required />
+									</div>
+									<div class="form-group">
+										<label for="alumno-nacimiento">Fecha de Nacimiento</label>
+										<input
+											type="date"
+											id="alumno-nacimiento"
+											name="fecha_nacimiento"
+											required
+										/>
+									</div>
 								</div>
-								<div class="form-group">
-									<label for="alumno-nacimiento">Fecha de Nacimiento</label>
-									<input
-										type="date"
-										id="alumno-nacimiento"
-										name="fecha_nacimiento"
-										required
-									/>
-								</div>
-							</div>
 
-							<div class="form-row">
-								<div class="form-group">
-									<label for="alumno-nivel">Nivel al que aspira ingresar</label>
-									<select id="alumno-nivel" name="nivel_id" required>
-										<option value="" disabled selected>Seleccioná una opción</option>
-										<option value="1">Nivel Inicial</option>
-										<option value="2">Nivel Primario</option>
-										<option value="3">Nivel Secundario</option>
-										<option value="4">Nivel Terciario</option>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="alumno-nivel">Nivel al que aspira ingresar</label>
+										<select id="alumno-nivel" name="nivel_id" required>
+											<option value="" disabled selected>Seleccioná una opción</option>
+											<option value="1">Nivel Inicial</option>
+											<option value="2">Nivel Primario</option>
+											<option value="3">Nivel Secundario</option>
+											<option value="4">Nivel Terciario</option>
+										</select>
+									</div>
+
+									<div class="form-group" id="anio-group">
+										<label for="alumno-anio">Año a cursar</label>
+										<select id="alumno-anio" name="anio_id" required>
+											<option value="" disabled selected>Seleccioná el año</option>
+											<option value="1">1er Año</option>
+											<option value="2">2do Año</option>
+											<option value="3">3er Año</option>
+											<option value="4">4to Año</option>
+											<option value="5">5to Año</option>
+											<option value="6">6to Año</option>
+										</select>
+									</div>
+								</div>
+
+								<!-- CAMPO DE ORIENTACIÓN (se muestra dinámicamente) -->
+								<div class="form-group" id="orientacion-group" style="display: none;">
+									<label for="orientacion">Orientación</label>
+									<select id="orientacion" name="orientacion_id">
+										<option value="" disabled selected>Seleccioná la orientación</option>
+										<option value="2">Informática</option>
+										<option value="3">Humanidades</option>
 									</select>
 								</div>
 
-								<div class="form-group" id="anio-group">
-									<label for="alumno-anio">Año a cursar</label>
-									<select id="alumno-anio" name="anio_id" required>
-										<option value="" disabled selected>Seleccioná el año</option>
-										<option value="1">1er Año</option>
-										<option value="2">2do Año</option>
-										<option value="3">3er Año</option>
-										<option value="4">4to Año</option>
-										<option value="5">5to Año</option>
-										<option value="6">6to Año</option>
-									</select>
+								<!-- CAMPO PARA ADJUNTAR BOLETÍN -->
+								<div class="form-group">
+									<label for="boletin">Boletín / Constancia de Alumno Regular (PDF o Imagen)</label>
+									<input type="file" id="boletin" name="boletin" accept=".pdf,image/*" required />
 								</div>
-							</div>
-
-							<!-- Orientación: Se muestra únicamente si selecciona Secundario (ID 3) y Año 4, 5 o 6 -->
-							<div class="form-group" id="orientacion-group" style="display: none;">
-								<label for="orientacion">Orientación / Especialidad</label>
-								<select id="orientacion" name="orientacion_id">
-									<option value="" disabled selected>Seleccioná una opción</option>
-									<option value="2">Informática</option>
-									<option value="3">Humanidades</option>
-								</select>
-							</div>
-
-							<!-- Comprobante / Boletín para verificar veracidad -->
-							<div class="form-group">
-								<label for="boletin">Boletín de calificaciones o comprobante de regularidad (PDF o Foto)</label>
-								<input type="file" id="boletin" name="boletin" accept=".pdf,image/*" required />
-							</div>
 							</fieldset>
 
-							<fieldset class="inscripcion-fieldset responsable-2">
-								<legend>Datos del Responsable 2 <small>(opcional)</small></legend>
-								<div class="form-group">
-									<label for="resp2-nombre">Nombre y Apellido</label>
-									<input
-										type="text"
-										id="resp2-nombre"
-										name="Responsable 2 - Nombre y Apellido"
-										pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]*"
-										oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
-										oninput="this.setCustomValidity('')"
-									/>
+							<fieldset class="inscripcion-fieldset">
+								<legend>Datos del Responsable</legend>
+								<div class="form-row">
+									<div class="form-group">
+										<label for="resp1-nombre">Nombre</label>
+										<input
+											type="text"
+											id="resp1-nombre"
+											name="tutor_nombre"
+											required
+											pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+											oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
+											oninput="this.setCustomValidity('')"
+										/>
+									</div>
+									<div class="form-group">
+										<label for="resp1-apellido">Apellido</label>
+										<input
+											type="text"
+											id="resp1-apellido"
+											name="tutor_apellido"
+											required
+											pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+"
+											oninvalid="this.setCustomValidity('Solo se permiten letras y espacios')"
+											oninput="this.setCustomValidity('')"
+										/>
+									</div>
 								</div>
 								<div class="form-row">
 									<div class="form-group">
-										<label for="resp2-dni">DNI</label>
-										<input type="text" id="resp2-dni" name="Responsable 2 - DNI" />
+										<label for="resp1-dni">DNI</label>
+										<input type="text" id="resp1-dni" name="tutor_dni" required />
 									</div>
 									<div class="form-group">
-										<label for="resp2-telefono">Teléfono</label>
-										<input type="tel" id="resp2-telefono" name="Responsable 2 - Teléfono" />
+										<label for="resp1-telefono">Teléfono</label>
+										<input type="tel" id="resp1-telefono" name="tutor_telefono" required />
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="resp2-email">Correo Electrónico</label>
+									<label for="resp1-email">Correo Electrónico</label>
 									<input
 										type="email"
-										id="resp2-email"
-										name="Responsable 2 - Correo Electrónico"
+										id="resp1-email"
+										name="tutor_email"
+										required
 									/>
 								</div>
 							</fieldset>
@@ -1441,7 +1444,7 @@
 				const anio = alumnoAnioSelect.value;
 
 				// Solo pide orientación en Secundario (3) para 4°, 5° y 6° año
-				if (nivel === '3' && ['4', '5', '6'].includes(anio)) {
+				if (nivel === '3' && ['4', '5'].includes(anio)) {
 					orientacionGroup.style.display = 'block';
 					orientacionSelect.required = true;
 				} else {
