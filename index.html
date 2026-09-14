@@ -737,19 +737,23 @@
 
 			@keyframes riseIn {
 				0% {
-					transform: translateY(120%) scaleY(1.05);
+					transform: translate3d(0, -110vh, 0) scale(0.96);
 					opacity: 0;
+					filter: blur(14px);
 				}
-				60% {
-					transform: translateY(-6%) scaleY(0.95);
+					45% {
+					transform: translate3d(0, 8px, 0) scale(1.015);
 					opacity: 1;
+					filter: blur(2px);
 				}
-				80% {
-					transform: translateY(2%) scaleY(1.02);
+					75% {
+					transform: translate3d(0, -2px, 0) scale(0.998);
+					filter: blur(0.4px);
 				}
 				100% {
-					transform: translateY(0) scaleY(1);
-					opacity: 1; /* Ensure text remains visible */
+					transform: translate3d(0, 0, 0) scale(1);
+					opacity: 1;
+					filter: blur(0);
 				}
 			}
 
@@ -757,6 +761,17 @@
 				display: inline-block;
 				opacity: 0;
 				white-space: pre;
+				will-change: transform, opacity, filter;
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.letter,
+				.hero-content p {
+					animation: none !important;
+					opacity: 1;
+					filter: none;
+					transform: none;
+				}
 			}
 
 			.hero-arrow {
@@ -2355,7 +2370,6 @@
 				<nav>
 					<ul>
 						<li><a href="NuestroColegio.html">Nuestro Colegio</a></li>
-						<li><a href="Proyectos.html">Proyectos</a></li>
 						<li><a href="Contacto.html">Contacto</a></li>
 						<li><a href="Inscripcion2027.html" class="nav-highlight">Inscripciones 2027</a></li>
 						<li class="menu-icon" onclick="toggleSideMenu()"><i class="fas fa-bars"></i></li>
@@ -2513,9 +2527,6 @@
 				<div class="projects-container">
 					<div class="projects-header">
 						<h3>Proyectos</h3>
-						<a href="Proyectos.html" class="arrow-link">
-							Ver más <i class="fas fa-arrow-right"></i>
-						</a>
 					</div>
 					<div class="projects-grid" id="home-projects-grid"></div>
 				</div>

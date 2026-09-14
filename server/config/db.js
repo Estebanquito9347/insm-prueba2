@@ -1,18 +1,15 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
+require('dotenv').config();
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'app_user',
-    password: 'waza2026',
-    database: 'inscripciones_db'
+const db = mysql.createPool({
+    host: process.env.DB_HOST || 'localhost',
+    port: Number(process.env.DB_PORT || 3306),
+    user: process.env.DB_USER || 'app_user',
+    password: process.env.DB_PASSWORD || '',
+    database: process.env.DB_NAME || 'inscripciones_db',
+    waitForConnections: true,
+    connectionLimit: Number(process.env.DB_CONNECTION_LIMIT || 10),
+    queueLimit: 0
 });
 
-connection.connect((err) => {
-    if (err) {
-        console.error('Error conectando a MariaDB:', err);
-        return;
-    }
-    console.log('¡Conectado exitosamente a MariaDB!');
-});
-
-module.exports = connection;
+module.exports = db;

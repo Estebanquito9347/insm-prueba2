@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS inscripciones (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    dni VARCHAR(30) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    nivel_id TINYINT UNSIGNED NOT NULL,
+    anio_id TINYINT UNSIGNED NOT NULL,
+    orientacion_id TINYINT UNSIGNED NULL,
+    tutor_nombre VARCHAR(100) NOT NULL,
+    tutor_apellido VARCHAR(100) NOT NULL,
+    tutor_dni VARCHAR(30) NOT NULL,
+    tutor_telefono VARCHAR(40) NOT NULL,
+    tutor_email VARCHAR(190) NULL,
+    boletin_path VARCHAR(255) NOT NULL,
+    ciclo_lectivo YEAR NOT NULL DEFAULT 2027,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    INDEX idx_inscripciones_ciclo (ciclo_lectivo),
+    INDEX idx_inscripciones_dni (dni)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

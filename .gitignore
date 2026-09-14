@@ -7,6 +7,8 @@ node_modules/
 # Archivos subidos por los usuarios (mantenemos la carpeta vacía)
 server/uploads/*
 !server/uploads/.gitkeep
+uploads/*
+!uploads/.gitkeep
 
 # Archivos basura del sistema operativo
 .DS_Store
