@@ -51,6 +51,18 @@
                 background-color: #f4f6f8;
                 animation: fadeInPage 0.5s ease-in-out;
             }
+            main.empty-level-page {
+                display: block;
+            }
+            main.empty-level-page .main-content-section {
+                display: none;
+            }
+            main.empty-level-page .hero-content h1 {
+                visibility: visible;
+            }
+            main.empty-level-page .hero-content p {
+                display: none;
+            }
             body.fade-out {
                 opacity: 0;
                 transition: opacity 0.5s ease-in-out;
@@ -1737,7 +1749,7 @@
             </div>
         </header>
 
-        <main>
+        <main class="empty-level-page" aria-label="Contenido pendiente de completar">
             <section class="hero-section">
                 <div class="hero-content">
                     <h1>
