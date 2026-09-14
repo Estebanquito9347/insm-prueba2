@@ -1,13 +1,14 @@
 # Dependencias de Node
 node_modules/
 
-# Archivos de entorno y credenciales (si usas variables de entorno)
+# Credenciales y variables de entorno
 .env
 
-# Carpeta de archivos subidos por usuarios
-uploads/
-/server/uploads/
+# Archivos subidos por los usuarios (mantenemos la carpeta vacía)
+server/uploads/*
+!server/uploads/.gitkeep
 
-# Archivos del sistema operativo
+# Archivos basura del sistema operativo
 .DS_Store
 Thumbs.db
+*.log

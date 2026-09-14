@@ -16,7 +16,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Conexión a MariaDB local
 const db = mysql.createConnection({
     host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'esteban',
+    user: process.env.DB_USER || 'app_user',
     password: process.env.DB_PASSWORD || 'waza2026',
     database: process.env.DB_NAME || 'inscripciones_db'
 });
