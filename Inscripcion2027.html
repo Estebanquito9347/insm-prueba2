@@ -1432,7 +1432,6 @@
 		
 
 		<script>
-			// --- Lógica de visibilidad según Nivel y Año ---
 			const alumnoNivelSelect = document.getElementById('alumno-nivel');
 			const alumnoAnioSelect = document.getElementById('alumno-anio');
 			const orientacionGroup = document.getElementById('orientacion-group');
@@ -1442,7 +1441,6 @@
 				const nivel = alumnoNivelSelect.value;
 				const anio = alumnoAnioSelect.value;
 
-				// Solo pide orientación en Secundario (3) para 4°, 5° y 6° año
 				if (nivel === '3' && ['4', '5'].includes(anio)) {
 					orientacionGroup.style.display = 'block';
 					orientacionSelect.required = true;
@@ -1456,14 +1454,15 @@
 			alumnoNivelSelect.addEventListener('change', actualizarVisibilidadOrientacion);
 			alumnoAnioSelect.addEventListener('change', actualizarVisibilidadOrientacion);
 
-			// --- Envío del formulario al Backend en Node.js ---
 			const formInscripcion = document.getElementById('formInscripcion');
 
 			formInscripcion.addEventListener('submit', async (e) => {
 				e.preventDefault();
 
 				const formData = new FormData(formInscripcion);
-				formData.append('ciclo_lectivo', '2027');
+				if (!formData.has('ciclo_lectivo')) {
+					formData.append('ciclo_lectivo', '2027');
+				}
 
 				const submitBtn = formInscripcion.querySelector('button[type="submit"]');
 				if (submitBtn) {
@@ -1472,8 +1471,7 @@
 				}
 
 				try {
-					// Enlace al servidor local en Node.js
-					const response = await fetch('http://localhost:3000/api/inscripciones', {
+										const response = await fetch('/api/inscripciones', {
 						method: 'POST',
 						body: formData
 					});

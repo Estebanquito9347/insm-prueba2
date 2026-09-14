@@ -102,14 +102,51 @@
             padding: 40px;
             color: #64748b;
         }
+
+        /* Estilos para el Login y Modal de Edición */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .login-box, .modal-content {
+            background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 100%; max-width: 400px;
+        }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 999;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
+        .form-group input { width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 5px; }
+        .btn-edit { background-color: #f39c12; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .btn-edit:hover { background-color: #d68910; }
+        .btn-save { background-color: #27ae60; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: 600; }
+        .btn-save:hover { background-color: #219653; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- CAPA DE LOGIN -->
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2 style="margin-top:0; color: var(--primary-color);">Acceso Restringido</h2>
+            <p style="font-size: 13px; color: #666;">Ingresá la contraseña del panel de administración.</p>
+            <div class="form-group">
+                <input type="password" id="admin-pass" placeholder="Contraseña...">
+            </div>
+            <button class="btn-save" onclick="intentarLogin()">Ingresar</button>
+            <p id="login-error" style="color: #e74c3c; font-size: 12px; margin-top: 10px; display: none;"></p>
+        </div>
+    </div>
+
+    <!-- PANEL PRINCIPAL -->
+    <div class="container" id="admin-panel" style="display: none;">
         <header>
             <h1>📋 Inscripciones Recibidas - INSM</h1>
-            <button class="btn-refresh" onclick="cargarInscripciones()">Actualizar Lista</button>
+            <div>
+                <button class="btn-refresh" onclick="cargarInscripciones()" style="margin-right: 10px;">Actualizar Lista</button>
+                <button class="btn-refresh" onclick="cerrarSesion()" style="background-color: #e74c3c;">Salir</button>
+            </div>
         </header>
 
         <div class="table-container">
@@ -123,35 +160,121 @@
                         <th>Tutor Responsable</th>
                         <th>Teléfono Tutor</th>
                         <th>Boletín</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-cuerpo">
                     <tr>
-                        <td colspan="7" class="no-data">Cargando inscripciones...</td>
+                        <td colspan="8" class="no-data">Cargando inscripciones...</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
+    <!-- MODAL DE EDICIÓN -->
+    <div class="modal-overlay" id="edit-modal">
+        <div class="modal-content">
+            <h3 style="margin-top:0; color: var(--primary-color);">Editar Inscripción</h3>
+            <form id="edit-form" onsubmit="guardarEdicion(event)">
+                <input type="hidden" id="edit-id">
+                <div class="form-group">
+                    <label>Nombre Alumno:</label>
+                    <input type="text" id="edit-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellido Alumno:</label>
+                    <input type="text" id="edit-apellido" required>
+                </div>
+                <div class="form-group">
+                    <label>DNI Alumno:</label>
+                    <input type="text" id="edit-dni" required>
+                </div>
+                <div class="form-group">
+                    <label>Nombre Tutor:</label>
+                    <input type="text" id="edit-tutor-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label>Apellido Tutor:</label>
+                    <input type="text" id="edit-tutor-apellido" required>
+                </div>
+                <div class="form-group">
+                    <label>Teléfono Tutor:</label>
+                    <input type="text" id="edit-tutor-telefono" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Tutor:</label>
+                    <input type="email" id="edit-tutor-email">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn-save">Guardar Cambios</button>
+                    <button type="button" class="btn-refresh" style="background-color: #95a5a6; width: 100%;" onclick="cerrarModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
-        async function cargarInscripciones() {
-            const tbody = document.getElementById('tabla-cuerpo');
-            tbody.innerHTML = `<tr><td colspan="7" class="no-data">Cargando inscripciones...</td></tr>`;
+        let listaGlobal = [];
+
+        async function intentarLogin() {
+            const pass = document.getElementById('admin-pass').value;
+            const errorP = document.getElementById('login-error');
 
             try {
-                const response = await fetch('http://localhost:3000/api/inscripciones');
-                if (!response.ok) throw new Error('http://localhost:3000/api/inscripciones');
-                
-                const datos = await response.json();
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: pass })
+                });
+                const data = await res.json();
 
-                if (datos.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="7" class="no-data">No hay inscripciones registradas todavía.</td></tr>`;
+                if (data.success) {
+                    sessionStorage.setItem('admin_auth', 'true');
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('admin-panel').style.display = 'block';
+                    cargarInscripciones();
+                } else {
+                    errorP.textContent = 'Contraseña incorrecta.';
+                    errorP.style.display = 'block';
+                }
+            } catch (err) {
+                errorP.textContent = 'Error de conexión con el servidor.';
+                errorP.style.display = 'block';
+            }
+        }
+
+        function cerrarSesion() {
+            sessionStorage.removeItem('admin_auth');
+            location.reload();
+        }
+
+        // Verificar si ya estaba logueado en esta pestaña
+        window.onload = () => {
+            if (sessionStorage.getItem('admin_auth') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+                document.getElementById('admin-panel').style.display = 'block';
+                cargarInscripciones();
+            }
+        };
+
+        async function cargarInscripciones() {
+            const tbody = document.getElementById('tabla-cuerpo');
+            tbody.innerHTML = `<tr><td colspan="8" class="no-data">Cargando inscripciones...</td></tr>`;
+
+            try {
+                const response = await fetch('/api/inscripciones');
+                if (!response.ok) throw new Error('Error al obtener datos');
+                
+                listaGlobal = await response.json();
+
+                if (listaGlobal.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="no-data">No hay inscripciones registradas todavía.</td></tr>`;
                     return;
                 }
 
                 tbody.innerHTML = '';
-                datos.forEach(item => {
+                listaGlobal.forEach(item => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                         <td><strong>#${item.id}</strong></td>
@@ -162,8 +285,11 @@
                         <td>${item.tutor_telefono}</td>
                         <td>
                             ${item.boletin_path 
-                                ? `<a href="http://localhost:3000/uploads/${item.boletin_path}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">📄 Ver Archivo</a>` 
+                                ? `<a href="/uploads/${item.boletin_path}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">📄 Ver Archivo</a>` 
                                 : '<span style="color: #94a3b8;">Sin archivo</span>'}
+                        </td>
+                        <td>
+                            <button class="btn-edit" onclick="abrirModal(${item.id})">✏️ Editar</button>
                         </td>
                     `;
                     tbody.appendChild(tr);
@@ -171,12 +297,63 @@
 
             } catch (error) {
                 console.error(error);
-                tbody.innerHTML = `<tr><td colspan="7" class="no-data" style="color: #e74c3c;">Error al cargar los datos del servidor.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="8" class="no-data" style="color: #e74c3c;">Error al cargar los datos del servidor.</td></tr>`;
             }
         }
 
-        // Cargar al abrir la página
-        cargarInscripciones();
+        function abrirModal(id) {
+            const item = listaGlobal.find(d => d.id === id);
+            if (!item) return;
+
+            document.getElementById('edit-id').value = item.id;
+            document.getElementById('edit-nombre').value = item.nombre || '';
+            document.getElementById('edit-apellido').value = item.apellido || '';
+            document.getElementById('edit-dni').value = item.dni || '';
+            document.getElementById('edit-tutor-nombre').value = item.tutor_nombre || '';
+            document.getElementById('edit-tutor-apellido').value = item.tutor_apellido || '';
+            document.getElementById('edit-tutor-telefono').value = item.tutor_telefono || '';
+            document.getElementById('edit-tutor-email').value = item.tutor_email || '';
+
+            document.getElementById('edit-modal').style.display = 'flex';
+        }
+
+        function cerrarModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        async function guardarEdicion(event) {
+            event.preventDefault();
+            const id = document.getElementById('edit-id').value;
+            const datosActualizados = {
+                nombre: document.getElementById('edit-nombre').value,
+                apellido: document.getElementById('edit-apellido').value,
+                dni: document.getElementById('edit-dni').value,
+                tutor_nombre: document.getElementById('edit-tutor-nombre').value,
+                tutor_apellido: document.getElementById('edit-tutor-apellido').value,
+                tutor_telefono: document.getElementById('edit-tutor-telefono').value,
+                tutor_email: document.getElementById('edit-tutor-email').value
+            };
+
+            try {
+                const res = await fetch(`/api/inscripciones/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datosActualizados)
+                });
+                const result = await res.json();
+
+                if (res.ok) {
+                    alert('¡Inscripción actualizada con éxito!');
+                    cerrarModal();
+                    cargarInscripciones();
+                } else {
+                    alert('Error: ' + (result.error || 'No se pudo actualizar'));
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Error de red al intentar actualizar.');
+            }
+        }
     </script>
 
 </body>

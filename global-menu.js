@@ -74,12 +74,14 @@
     tree.appendChild(buildMenuItem('NIVELES - CATEGORÍAS', [
       { label: 'Nivel Inicial', children: [
         { label: 'Información General', href: siteHref('NivelInicial.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelInicial.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelInicial.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelInicial.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosInicial.html') }
       ], href: siteHref('NivelInicial.html#bienvenida') },
       { label: 'Nivel Primario', children: [
         { label: 'Información General', href: siteHref('NivelPrimario.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelPrimario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelPrimario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelPrimario.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosPrimario.html') }
@@ -93,12 +95,14 @@
       ], href: siteHref('NivelSecundario.html#bienvenida') },
       { label: 'Nivel Terciario', children: [
         { label: 'Información General', href: siteHref('NivelTerciario.html#bienvenida') },
+        { label: 'Orientaciones', href: siteHref('NivelTerciario.html#especialidades') },
         { label: 'Uniforme', href: siteHref('NivelTerciario.html#uniforme') },
         { label: 'Inscripción', href: siteHref('NivelTerciario.html#requerimientos') },
         { label: 'Proyectos', href: siteHref('ProyectosTerciario.html') }
       ], href: siteHref('NivelTerciario.html#bienvenida') }
     ], null, siteHref('index.html#niveles')));
     tree.appendChild(buildMenuItem('EXPLORÁ', [
+      { label: 'Proyectos', href: siteHref('Proyectos.html') },
       { label: 'Contacto', href: siteHref('Contacto.html#info-contacto') },
       { label: 'Inscripciones 2027', href: siteHref('Inscripcion2027.html') }
     ], null, siteHref('Contacto.html#info-contacto')));
