@@ -56,14 +56,23 @@ body.fade-out {
   box-shadow: 0 8px 24px rgba(37, 37, 37, 0.16);
 }
 
-.header-main nav ul li:has(a) {
-  display: none !important;
+/* Esta regla debe aplicarse SOLO en mobile: oculta los links de texto
+   del nav para dejar solo el logo + el ícono de tres puntos. Sin el
+   media query se aplicaba siempre (también en desktop), por eso el
+   header en pantallas anchas mostraba solo el logo y los tres puntos,
+   sin "Nuestro Colegio", "Contacto" ni "Inscripciones 2027". */
+@media (max-width: 768px) {
+  .header-main nav ul li:has(a) {
+    display: none !important;
+  }
+
+  .header-main nav ul {
+    gap: 0 !important;
+  }
 }
 
-.header-main nav ul {
-  gap: 0 !important;
-}
-
+/* El ícono de tres puntos (menú global) sí se muestra en todos los
+   tamaños de pantalla, a propósito. */
 .header-main .menu-icon {
   display: inline-flex !important;
   align-items: center;
@@ -74,6 +83,7 @@ body.fade-out {
   font-size: 2rem !important;
   line-height: 1;
   text-shadow: none !important;
+  cursor: pointer;
 }
 
 .header-main .menu-icon i {
