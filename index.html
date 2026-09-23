@@ -3112,7 +3112,7 @@
 			showTestimonial(currentTestimonial);
 			startAutoRotate();
 
-			// Recalcular altura del testimonio activo para evitar recortes cuando se cargan las fuentes o se inicializa el DOM
+			// Recalcular altura del testimonio document.addEventListener('DOMContentLoaded', () => {activo para evitar recortes cuando se cargan las fuentes o se inicializa el DOM
 			document.addEventListener('DOMContentLoaded', () => {
 				const container = document.getElementById('testimonial-text-container');
 				const activeSlide = testimonialSlides[currentTestimonial];
@@ -3328,15 +3328,17 @@
 				runHeroAnimation();
 				
 				// Verificación de IDs Críticos del DOM
-				const criticalIDs = [
-					'home-projects-grid', 'dropdownMenu', 'unity-teaser', 
-					'unity-game-container', 'start-tour-btn', 'unity-iframe',
-					'testimonial-text-container'
-				];
-				criticalIDs.forEach(id => {
-					if (!document.getElementById(id)) {
-						console.error(`Error: El contenedor esencial con ID '${id}' no fue encontrado en el DOM.`);
-					}
+				document.addEventListener('DOMContentLoaded', () => {
+					const criticalIDs = [
+						'home-projects-grid', 'dropdownMenu', 'unity-teaser', 
+						'unity-game-container', 'start-tour-btn', 'unity-iframe',
+						'testimonial-text-container'
+					];
+					criticalIDs.forEach(id => {
+						if (!document.getElementById(id)) {
+							console.error(`Error: El contenedor esencial con ID '${id}' no fue encontrado en el DOM.`);
+						}
+					});
 				});
 
 				// Handler genérico de feedback táctil (.active-press) de alta fidelidad para móviles, tablets y pc
@@ -3452,6 +3454,6 @@
 				});
 			}); // Cierre del DOMContentLoaded
 		</script>
-			<script src="global-menu.js"></script>
+			<script src="global-menu.js" defer></script>
 	</body>
 </html>
