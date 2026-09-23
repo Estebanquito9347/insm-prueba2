@@ -111,7 +111,7 @@
 				}
 			}
 
-			/* --- CORRECCIÓN SCROLL (Para que el menú fijo no tape el título) --- */
+			/* --- CORRECCIÓN DE SCROLL (Para que el menú fijo no tape el título) --- */
 			section {
 				scroll-margin-top: 80px; /* Ajuste para dejar espacio arriba al navegar */
 			}
@@ -127,13 +127,13 @@
 				visibility: hidden;
 				pointer-events: none;
 				overflow: hidden;
-				transition: visibility 0.6s;
+				transition: visibility 0.6s; /* Permite que la animación de salida termine antes de ocultar */
 			}
 
 			.side-menu.active {
 				visibility: visible;
 				pointer-events: all;
-				transition: none;
+				transition: none; /* Aparece instantáneamente al activar */
 			}
 
 			.side-menu-overlay {
@@ -146,7 +146,7 @@
 				backdrop-filter: blur(8px);
 				-webkit-backdrop-filter: blur(8px);
 				opacity: 0;
-				transition: opacity 0.6s ease;
+				transition: opacity 0.6s ease; /* Sincronizado con el panel */
 			}
 
 			.side-menu.active .side-menu-overlay {
@@ -162,13 +162,13 @@
 				height: 100dvh;
 				background: #ffffff;
 				transform: translateX(110%);
-				transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+				transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Curva más suave y orgánica */
 				padding: 40px;
 				box-shadow: -15px 0 50px rgba(0, 0, 0, 0.15);
 				display: flex;
 				flex-direction: column;
 				box-sizing: border-box;
-				overflow: hidden;
+				overflow: hidden; /* BLOQUEO DE SCROLL EN EL PANEL PRINCIPAL */
 			}
 
 			.side-menu.active .side-menu-content {
@@ -195,20 +195,21 @@
 				padding: 0;
 				margin: 0;
 				flex-grow: 1;
-				overflow-y: auto;
+				overflow-y: auto; /* SE MUESTRA SOLO SI ES NECESARIO */
 				overflow-x: hidden;
 				padding-right: 10px;
-				scrollbar-width: thin;
-				scrollbar-color: #f39c12 #f4f6f8;
-				scrollbar-gutter: stable;
+				scrollbar-width: thin; /* Firefox */
+				scrollbar-color: #f39c12 #f4f6f8; /* Firefox */
+				scrollbar-gutter: stable; /* RESERVA EL ESPACIO PARA EVITAR SALTOS */
 			}
 
+			/* --- Scrollbar personalizada visible SIN interacción cuando es necesaria --- */
 			.side-menu-links::-webkit-scrollbar {
 				width: 8px;
 				display: block !important;
 			}
 			.side-menu-links::-webkit-scrollbar-track {
-				background: #f4f6f8 !important;
+				background: #f4f6f8 !important; /* Fondo sólido para evitar que el SO la oculte */
 				border-radius: 10px;
 			}
 			.side-menu-links::-webkit-scrollbar-thumb {
@@ -224,6 +225,7 @@
 				transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 
+			/* --- Ocultar Accesos Globales en Desktop y Tablet (ya están en el header) --- */
 			@media (min-width: 769px) {
 				.side-menu-shortcuts,
 				.side-menu-footer {
@@ -236,12 +238,22 @@
 				transform: translateX(0);
 			}
 
-			.side-menu.active .side-menu-links li:nth-child(1) { transition-delay: 0.15s; }
-			.side-menu.active .side-menu-links li:nth-child(2) { transition-delay: 0.20s; }
-			.side-menu.active .side-menu-links li:nth-child(3) { transition-delay: 0.25s; }
-			.side-menu.active .side-menu-links li:nth-child(4) { transition-delay: 0.30s; }
-			.side-menu.active .side-menu-links li:nth-child(5) { transition-delay: 0.35s; }
-
+			/* Delays restaurados para animación escalonada */
+			.side-menu.active .side-menu-links li:nth-child(1) {
+				transition-delay: 0.15s;
+			}
+			.side-menu.active .side-menu-links li:nth-child(2) {
+				transition-delay: 0.20s;
+			}
+			.side-menu.active .side-menu-links li:nth-child(3) {
+				transition-delay: 0.25s;
+			}
+			.side-menu.active .side-menu-links li:nth-child(4) {
+				transition-delay: 0.30s;
+			}
+			.side-menu.active .side-menu-links li:nth-child(5) {
+				transition-delay: 0.35s;
+			}
 			.side-menu-links li a {
 				display: flex;
 				align-items: center;
@@ -252,6 +264,7 @@
 				font-family: 'ProximaNova', sans-serif;
 				font-size: 1.1em;
 				border-radius: 12px;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				transition:
@@ -268,6 +281,7 @@
 				font-size: 1.2em;
 			}
 
+			/* --- HOVERS: Solo para Computadoras --- */
 			@media (hover: hover) {
 				.side-menu-links li a:hover {
 					background-color: #f4f6f8;
@@ -305,6 +319,7 @@
 				}
 			}
 
+			/* Feedback táctil suave para móviles y tablets */
 			.side-menu-links li a:active,
 			.side-menu-links li a.active-press {
 				background-color: #f0f0f0;
@@ -345,8 +360,9 @@
 				}
 			}
 
+			/* --- Accesos Rápidos Globales --- */
 			.side-menu-shortcuts {
-				margin-top: auto;
+				margin-top: auto; /* ANCLAJE AL FONDO */
 				padding-top: 20px;
 				border-top: 1px solid #eee;
 				flex-shrink: 0;
@@ -380,8 +396,9 @@
 				font-family: 'ProximaNova', sans-serif;
 				font-size: 0.9em;
 				border: 1px solid transparent;
-				min-height: 54px;
+				min-height: 54px; /* Unifica el tamaño vertical */
 				box-sizing: border-box;
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -415,6 +432,7 @@
 				font-family: 'ProximaNova', sans-serif;
 				font-weight: bold;
 				border-radius: 50px;
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -424,6 +442,7 @@
 					background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 
+			/* Adaptabilidad de tamaños finales */
 			@media (max-width: 1024px) {
 				.side-menu-content {
 					width: 380px;
@@ -443,68 +462,97 @@
 				}
 			}
 
-			/* --- Animaciones --- */
+			/* --- Animaciones de entrada --- */
 			@keyframes fadeInDown {
-				from { opacity: 0; transform: translateY(-20px); }
-				to { opacity: 1; transform: translateY(0); }
+				from {
+					opacity: 0;
+					transform: translateY(-20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
 			}
 
 			@keyframes fadeInUp {
-				from { opacity: 0; transform: translateY(20px); }
-				to { opacity: 1; transform: translateY(0); }
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
 			}
 
 			@keyframes fadeInLeft {
-				from { opacity: 0; transform: translateX(-20px); }
-				to { opacity: 1; transform: translateX(0); }
+				from {
+					opacity: 0;
+					transform: translateX(-20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0);
+				}
 			}
 
 			@keyframes fadeInRight {
-				from { opacity: 0; transform: translateX(20px); }
-				to { opacity: 1; transform: translateX(0); }
+				from {
+					opacity: 0;
+					transform: translateX(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0);
+				}
 			}
 
 			@keyframes fadeIn {
-				from { opacity: 0; }
-				to { opacity: 1; }
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
 			}
 
 			/* --- Header --- */
 			.header-main {
-				background-color: rgba(26, 79, 141, 0.25);
-				backdrop-filter: blur(5px);
-				-webkit-backdrop-filter: blur(5px);
+				background-color: rgba(26, 79, 141, 0.25); /* Fondo 75% transparente */
+				backdrop-filter: blur(5px); /* Efecto de desenfoque para mejor legibilidad */
+				-webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
 				color: white;
 				padding: 15px 30px;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				position: fixed;
+				position: fixed; /* Cambiado de absolute a fixed */
 				top: 0;
 				left: 0;
 				right: 0;
 				z-index: 100;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-				transition: all 0.3s ease;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Sutil borde inferior */
+				transition: all 0.3s ease; /* Transición suave para cambios */
 			}
 			.header-main .logo {
 				display: flex;
 				align-items: center;
 				font-size: 1.5em;
 				font-weight: bold;
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
 			}
 			.header-main .logo a {
 				display: flex;
 				align-items: center;
 				text-decoration: none;
 				color: white;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 			}
 			.header-main .logo a:hover {
-				color: white;
+				color: white; /* Mantiene el color original */
 			}
 			.header-main .logo a:active,
 			.header-main .logo a.active-press {
@@ -534,10 +582,11 @@
 				color: white;
 				font-family: 'ProximaNova', sans-serif;
 				font-size: 1em;
-				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
 				position: relative;
 				padding-bottom: 5px;
 				display: inline-block;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				transition:
@@ -549,6 +598,7 @@
 				transform: scale(0.95) translate3d(0, 0, 0);
 				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 			}
+			/* Animación de línea inferior para enlaces del menú */
 			.header-main nav ul li:not(:last-child) a::after {
 				content: '';
 				position: absolute;
@@ -572,6 +622,7 @@
 				cursor: pointer;
 				text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 				display: inline-block;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -593,9 +644,10 @@
 				padding-left: 8%;
 				box-sizing: border-box;
 				text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-				overflow: hidden;
+				overflow: hidden; /* Necesario para el zoom del fondo */
 			}
 
+			/* Imagen de Fondo con Zoom */
 			.hero-section::after {
 				content: '';
 				position: absolute;
@@ -611,6 +663,7 @@
 				transition: transform 0.3s ease-out;
 			}
 
+			/* Gradiente Oscuro */
 			.hero-section::before {
 				content: '';
 				position: absolute;
@@ -620,6 +673,11 @@
 				height: 100%;
 				background: linear-gradient(to right, rgba(70, 68, 68, 0.5), rgba(0, 0, 0, 0));
 				z-index: 1;
+			}
+
+			.hero-section::marker {
+				/* evitar regla vacía que genera warning */
+				display: none;
 			}
 
 			.hero-shape-diagonal {
@@ -665,7 +723,7 @@
 				flex-direction: column;
 				gap: 8px;
 				cursor: pointer;
-				visibility: hidden;
+				visibility: hidden; /* Hidden initially, shown by JS */
 			}
 
 			.hero-content h1 {
@@ -674,7 +732,7 @@
 				line-height: 1.1;
 				font-weight: normal;
 				color: white;
-				visibility: hidden;
+				visibility: hidden; /* Hidden initially, shown by JS */
 			}
 
 			@keyframes riseIn {
@@ -683,12 +741,12 @@
 					opacity: 0;
 					filter: blur(14px);
 				}
-				45% {
+					45% {
 					transform: translate3d(0, 8px, 0) scale(1.015);
 					opacity: 1;
 					filter: blur(2px);
 				}
-				75% {
+					75% {
 					transform: translate3d(0, -2px, 0) scale(0.998);
 					filter: blur(0.4px);
 				}
@@ -747,7 +805,7 @@
 				transform: scale(1.2);
 			}
 
-			/* --- SECCIÓN NUESTRO COLEGIO --- */
+			/* --- NUEVA SECCIÓN: NUESTRO COLEGIO --- */
 			.college-section {
 				padding: 100px 20px;
 				background-color: #ffffff;
@@ -771,7 +829,7 @@
 			.college-text h2 {
 				font-family: 'Heuristica', serif;
 				font-size: 3.5em;
-				color: #cf0621;
+				color: #cf0621; /* Color rojo institucional */
 				margin: 0 0 25px 0;
 				font-weight: normal;
 				line-height: 1.1;
@@ -802,18 +860,19 @@
 
 			.college-features li::before {
 				content: '•';
-				color: #cf0621;
+				color: #cf0621; /* Punto rojo */
 				font-size: 1.5em;
 				position: absolute;
 				left: 0;
 				top: -5px;
 			}
 
+			/* Galería estilo mosaico */
 			.college-gallery {
 				flex: 1;
 				display: flex;
 				gap: 20px;
-				height: 600px;
+				height: 600px; /* Altura fija para controlar la proporción */
 			}
 
 			.gallery-col {
@@ -835,13 +894,28 @@
 				transform: scale(1.02);
 			}
 
-			.col-1 img:nth-child(1) { height: 25%; }
-			.col-1 img:nth-child(2) { height: 50%; }
-			.col-1 img:nth-child(3) { height: 20%; }
+			/* Control de alturas para imitar la referencia - Más irregular */
+			/* Columna Izquierda: Destaca la del medio (tipo Estatua de la Libertad en ref) */
+			.col-1 img:nth-child(1) {
+				height: 25%;
+			}
+			.col-1 img:nth-child(2) {
+				height: 50%;
+			} /* La más alta del conjunto */
+			.col-1 img:nth-child(3) {
+				height: 20%;
+			}
 
-			.col-2 img:nth-child(1) { height: 35%; }
-			.col-2 img:nth-child(2) { height: 25%; }
-			.col-2 img:nth-child(3) { height: 35%; }
+			/* Columna Derecha: Alturas variadas y desfasadas respecto a la izquierda */
+			.col-2 img:nth-child(1) {
+				height: 35%;
+			}
+			.col-2 img:nth-child(2) {
+				height: 25%;
+			}
+			.col-2 img:nth-child(3) {
+				height: 35%;
+			}
 
 			/* --- Sección de Niveles Educativos --- */
 			.levels-section {
@@ -872,6 +946,7 @@
 				font-family: 'Heuristica', serif;
 			}
 
+			/* Pestañas de niveles */
 			.level-tabs {
 				display: flex;
 				justify-content: center;
@@ -890,6 +965,7 @@
 				cursor: pointer;
 				border-bottom: 3px solid transparent;
 				position: relative;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -911,9 +987,10 @@
 			.level-tab:active,
 			.level-tab.active-press {
 				transform: scale(0.95) translate3d(0, 0, 0);
-				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1); /* Respuesta táctil rápida y suave */
 			}
 
+			/* Contenido de pestañas */
 			.level-content {
 				display: none;
 				animation: fadeInUp 0.5s ease-out;
@@ -969,6 +1046,7 @@
 				text-decoration: none;
 				font-family: 'ProximaNova', sans-serif;
 				font-weight: 500;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -989,6 +1067,7 @@
 				transition: transform 0.3s ease;
 			}
 
+			/* Controles para la galería de niveles en móvil */
 			.level-controls {
 				display: none;
 				justify-content: center;
@@ -1048,6 +1127,7 @@
 				color: inherit;
 				display: block;
 				overflow: hidden;
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1069,7 +1149,7 @@
 				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 				transition:
 					transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
-					box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+					box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1); /* Respuesta táctil rápida y suave */
 			}
 
 			@media (hover: hover) {
@@ -1083,7 +1163,7 @@
 				width: 100%;
 				height: 200px;
 				object-fit: cover;
-				pointer-events: none;
+				pointer-events: none; /* Asegura que los eventos táctiles se propaguen al contenedor en móviles */
 			}
 
 			.projects-card-content {
@@ -1102,6 +1182,7 @@
 				margin: 0 0 15px 0;
 				font-family: 'Heuristica', serif;
 				color: #f39c12;
+				/* Regla: Salto de palabra completa por defecto. Guion manual solo si desborda. */
 				word-break: normal;
 				overflow-wrap: break-word;
 				hyphens: manual;
@@ -1113,6 +1194,7 @@
 				color: #6b6b6b;
 				line-height: 1.6;
 				margin: 0;
+				/* Regla: Salto de palabra completa por defecto. Guion manual solo si desborda. */
 				word-break: normal;
 				overflow-wrap: break-word;
 				hyphens: manual;
@@ -1151,11 +1233,13 @@
 				left: -20px;
 			}
 
+			/* Contenedor para los slides de texto */
 			#testimonial-text-container {
 				display: grid;
 				align-items: start;
 				overflow: hidden;
 				transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				/* Altura dinámica basada en el contenido */
 			}
 
 			.testimonial-slide {
@@ -1201,7 +1285,7 @@
 			.testimonial-controls {
 				display: flex;
 				gap: 15px;
-				margin-top: 60px;
+				margin-top: 60px; /* Aumentado para mayor separación */
 			}
 
 			.testimonial-btn {
@@ -1216,6 +1300,7 @@
 				cursor: pointer;
 				color: #333;
 				font-size: 1.1em;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1239,7 +1324,7 @@
 			.testimonial-btn:active,
 			.testimonial-btn.active-press {
 				transform: scale(0.95) translate3d(0, 2px, 0);
-				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1); /* Respuesta táctil rápida y suave */
 			}
 
 			.testimonial-btn i.fa-pause,
@@ -1259,13 +1344,227 @@
 				height: 100%;
 				object-fit: cover;
 				border-radius: 12px;
-				opacity: 0;
 				transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 				box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 			}
 
-			.testimonial-img.active {
-				opacity: 1;
+			.close-menu {
+				color: white;
+				font-size: 1.5em;
+				cursor: pointer;
+				background: none;
+				border: none;
+			}
+			.menu-content {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1px;
+				height: calc(100vh - 80px);
+				background-color: rgba(150, 150, 150, 0.25);
+				backdrop-filter: blur(5px);
+			}
+			.menu-section {
+				background-color: rgba(150, 150, 150, 0.25);
+				backdrop-filter: blur(5px);
+				padding: 30px 20px;
+				display: flex;
+				flex-direction: column;
+			}
+			.menu-section h3 {
+				color: #cf0621;
+				font-family: 'ProximaNova', sans-serif;
+				font-size: 1.4em;
+				margin: 0 0 20px 0;
+				font-weight: bold;
+				padding-bottom: 10px;
+				position: relative;
+				display: inline-block;
+				cursor: pointer;
+			}
+			.menu-section h3::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 0;
+				height: 2px;
+				background-color: #f39c12;
+				transition: width 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+			.menu-section h3:hover::after {
+				width: 100%;
+			}
+			.menu-section ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				flex-grow: 1;
+			}
+			.menu-section ul li {
+				margin-bottom: 12px;
+			}
+			.menu-section ul li a {
+				color: rgb(255, 255, 255);
+				text-decoration: none;
+				font-family: 'ProximaNova', sans-serif;
+				font-size: 1em;
+				transition: color 0.2s ease;
+				background: none;
+				padding: 0;
+			}
+			.menu-section ul li a:hover {
+				color: #f39c12;
+				text-decoration: underline;
+			}
+
+			/* --- Menú desplegable Estilo Móvil (Tipo App) --- */
+			.dropdown-menu {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				background-color: #ffffff;
+				z-index: 2000;
+				display: block; /* Siempre en el DOM, controlado por transform */
+				transform: translateX(100%); /* Oculto a la derecha */
+				transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				overflow-y: auto;
+			}
+
+			.dropdown-menu.show {
+				transform: translateX(0);
+			}
+
+			.mobile-menu-header {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+				border-bottom: 1px solid #f0f0f0;
+				background-color: #fff;
+				position: sticky;
+				top: 0;
+				z-index: 10;
+			}
+
+			.mobile-menu-logo {
+				display: flex;
+				align-items: center;
+				font-size: 1.2em;
+				font-weight: bold;
+				color: #333;
+			}
+
+			.mobile-menu-logo img {
+				height: 40px; /* Tamaño ajustado para móvil */
+				margin-right: 10px;
+				width: auto;
+			}
+
+			.close-menu-btn {
+				background: none;
+				border: none;
+				font-size: 1.5em; /* Tamaño similar a la X de la imagen */
+				color: #cf0621;
+				cursor: pointer;
+				padding: 5px;
+				display: flex;
+				align-items: center;
+				/* Aceleración de Hardware */
+				will-change: transform;
+				transform: translate3d(0, 0, 0);
+				transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+			.close-menu-btn:active,
+			.close-menu-btn.active-press {
+				transform: scale(0.95) translate3d(0, 0, 0);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.mobile-menu-list {
+				list-style: none;
+				padding: 0;
+				margin: 10px 0 0 0;
+			}
+
+			.mobile-menu-list li a {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 18px 25px;
+				text-decoration: none;
+				color: #333;
+				font-family: 'ProximaNova', sans-serif;
+				font-size: 1.1em;
+				transition: background-color 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+				will-change: transform;
+				transform: translate3d(0, 0, 0);
+			}
+
+			.mobile-menu-list li a:active,
+			.mobile-menu-list li a.active-press {
+				transform: scale(0.95) translate3d(0, 0, 0);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.mobile-menu-list li a:hover {
+				background-color: #f9f9f9;
+				color: #cf0621;
+			}
+
+			.mobile-menu-list li a i {
+				color: #f39c12;
+				font-size: 0.9em;
+			}
+
+			.mobile-menu-list li a:hover i {
+				color: #cf0621;
+			}
+
+			.mobile-menu-highlight {
+				margin-top: 10px;
+				border-top: 8px solid #f39c12; /* Separador grueso estilo móvil con color secundario */
+				padding-top: 10px;
+				padding-bottom: 40px;
+			}
+
+			.mobile-menu-highlight h4 {
+				padding: 15px 25px 5px 25px;
+				font-family: 'ProximaNova', sans-serif;
+				font-size: 1em;
+				color: #cf0621;
+				font-weight: normal;
+				margin: 0;
+			}
+
+			.mobile-menu-highlight a {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 18px 25px;
+				text-decoration: none;
+				color: #333;
+				font-family: 'ProximaNova', sans-serif;
+				font-size: 1.1em;
+				font-weight: 600; /* Un poco más grueso */
+				transition: background-color 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+				will-change: transform;
+				transform: translate3d(0, 0, 0);
+			}
+
+			.mobile-menu-highlight a:active,
+			.mobile-menu-highlight a.active-press {
+				transform: scale(0.95) translate3d(0, 0, 0);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+			}
+
+			.mobile-menu-highlight a.highlight-red {
+				color: #cf0621;
+			}
+
+			.mobile-menu-highlight a:hover {
+				background-color: #f9f9f9;
 			}
 
 			/* --- Footer --- */
@@ -1343,7 +1642,7 @@
 			.contact-info p {
 				margin: 0 0 10px 0;
 				line-height: 1.5;
-				white-space: nowrap;
+				white-space: nowrap; /* Evita que el número de teléfono salte a la siguiente línea */
 			}
 			.contact-info a {
 				color: #fff;
@@ -1372,7 +1671,8 @@
 			.social-icons a {
 				color: #f39c12;
 				font-size: 1.5em;
-				display: inline-block;
+				display: inline-block; /* Ensure transform works */
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1389,7 +1689,7 @@
 			.social-icons a:active,
 			.social-icons a.active-press {
 				transform: scale(0.95) translate3d(0, 1px, 0);
-				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1); /* Respuesta táctil rápida y suave */
 			}
 			.footer-map-container {
 				position: relative;
@@ -1402,6 +1702,18 @@
 				margin-top: 20px;
 			}
 
+			/* Animación Ripple adaptada */
+			@keyframes ripple {
+				0% {
+					transform: scale(1);
+					opacity: 0.8;
+				}
+				100% {
+					transform: scale(1.3, 1.5);
+					opacity: 0;
+				}
+			}
+
 			.get-directions a {
 				display: inline-block;
 				padding: 12px 25px;
@@ -1409,6 +1721,7 @@
 				color: #fff;
 				text-decoration: none;
 				border-radius: 5px;
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1481,7 +1794,7 @@
 				opacity: 0.6;
 			}
 
-			/* --- RECORRIDO VIRTUAL --- */
+			/* --- NUEVOS ESTILOS: RECORRIDO VIRTUAL --- */
 			.virtual-tour-section {
 				padding: 80px 20px;
 				background-color: #ffffff;
@@ -1493,12 +1806,14 @@
 				margin: 0 auto;
 			}
 
+			/* El .levels-title se reutiliza para el título de esta sección */
+
 			.unity-box {
 				position: relative;
 				border-radius: 12px;
 				overflow: hidden;
 				box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-				margin-top: 60px;
+				margin-top: 60px; /* Separación del título */
 			}
 
 			#unity-teaser {
@@ -1540,7 +1855,7 @@
 				font-size: 3em;
 				font-weight: bold;
 				margin: 0 0 15px 0;
-				color: #f39c12;
+				color: #f39c12; /* Color de acento del sitio */
 			}
 
 			.unity-overlay-content p {
@@ -1562,6 +1877,7 @@
 				cursor: pointer;
 				text-transform: uppercase;
 				letter-spacing: 0.5px;
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1573,7 +1889,7 @@
 
 			@media (hover: hover) {
 				.unity-start-btn:hover {
-					background-color: #cf0621;
+					background-color: #cf0621; /* Color primario del sitio */
 					transform: translate3d(0, -2px, 0);
 					box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 				}
@@ -1598,7 +1914,7 @@
 			}
 
 			#unity-game-container {
-				background: #1c1c1c;
+				background: #1c1c1c; /* Fondo oscuro para el juego */
 				padding: 0;
 				height: 600px;
 			}
@@ -1607,7 +1923,7 @@
 				display: block;
 				border: none;
 				width: 100%;
-				height: 100%;
+				height: 100%; /* Ocupa el 100% del contenedor padre */
 			}
 
 			.unity-close-btn {
@@ -1626,6 +1942,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				/* Aceleración de Hardware */
 				will-change: transform;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1650,16 +1967,16 @@
 			.unity-close-btn:active,
 			.unity-close-btn.active-press {
 				transform: scale(0.95) translate3d(0, 2px, 0);
-				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+				transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1); /* Respuesta táctil rápida y suave */
 			}
 
-			/* --- BOTONES VER MÁS --- */
+			/* --- INICIO: CÓDIGO DE BOTONES --- */
 			.view-more-container {
 				display: flex;
 				justify-content: center;
 				gap: 20px;
-				flex-wrap: wrap;
-				margin-top: 30px;
+				flex-wrap: wrap; /* Para que se vea bien en móvil */
+				margin-top: 30px; /* Reduje el margen superior */
 			}
 			.view-more-btn {
 				background-color: transparent;
@@ -1672,8 +1989,9 @@
 				font-weight: bold;
 				border-radius: 50px;
 				cursor: pointer;
-				text-decoration: none;
-				display: inline-block;
+				text-decoration: none; /* Añadido para que sirva en enlaces */
+				display: inline-block; /* Para botones <a> */
+				/* Aceleración de Hardware */
 				will-change: transform, box-shadow;
 				transform: translate3d(0, 0, 0);
 				backface-visibility: hidden;
@@ -1711,13 +2029,14 @@
 					transform: scale(0.95) translate3d(0, -1px, 0);
 				}
 			}
+			/* --- FIN: CÓDIGO DE BOTONES --- */
 
 			/* --- SECCIÓN CONTACTO HOME --- */
 			.contact-home-section {
 				padding: 100px 20px;
-				background-color: #f4f6f8;
+				background-color: #f4f6f8; /* Unificado con Niveles */
 				text-align: center;
-				border-top: 1px solid #e0e0e0;
+				border-top: 1px solid #e0e0e0; /* Separador sutil */
 			}
 			.contact-home-container {
 				max-width: 800px;
@@ -1754,7 +2073,10 @@
 				max-width: 600px;
 			}
 
-			/* --- Responsive --- */
+			/* --- FIN DE NUEVOS ESTILOS --- */
+
+			/* Responsive */
+			/* --- Responsive Brand Text & Icon Logic --- */
 			.brand-text-desktop {
 				display: inline;
 				white-space: nowrap;
@@ -1763,6 +2085,9 @@
 				display: none;
 			}
 
+			/* --- Responsive Design Professional --- */
+
+			/* Brand Text Switch for Intermediate Screens */
 			@media (max-width: 1000px) {
 				.brand-text-desktop {
 					display: none;
@@ -1773,10 +2098,11 @@
 					font-size: 1.2em;
 				}
 				.header-main .logo span {
-					font-size: 1.2em;
+					font-size: 1.2em; /* Increase size for INSM */
 				}
 			}
 
+			/* --- TABLET (Portrait & Landscape) --- */
 			@media (min-width: 601px) and (max-width: 1366px) and (pointer: coarse) {
 				.college-section,
 				.levels-section,
@@ -1790,10 +2116,12 @@
 				}
 			}
 
+			/* Tablet & Small Desktop (max-width: 992px) */
 			@media (max-width: 992px) {
 				.hero-content h1 {
 					font-size: 5em;
 				}
+				/* Padding de contenedores unificado vía secciones */
 				.footer-container {
 					flex-direction: column;
 					gap: 50px;
@@ -1823,16 +2151,18 @@
 					justify-content: center;
 				}
 
+				/* Recorrido Virtual - HIDE on Tablet and Mobile */
 				.virtual-tour-section {
 					display: none !important;
 				}
 
+				/* Testimonios Tablet Optimization */
 				.testimonials-grid {
 					grid-template-columns: 1fr;
 					gap: 40px;
 				}
 				.testimonial-images {
-					display: none;
+					display: none; /* Hidden to focus on text content in tablet/mobile */
 				}
 				.testimonial-text {
 					text-align: center;
@@ -1851,9 +2181,21 @@
 					justify-content: center;
 					margin-top: 30px;
 				}
+
+				/* Ajustes del Dock para tablet */
+				.bottom-dock {
+					padding: 10px 15px;
+					gap: 5px;
+				}
+				.dock-item {
+					width: 40px;
+					height: 40px;
+				}
 			}
 
+			/* Mobile & Tablet Portrait (max-width: 768px) */
 			@media (max-width: 768px) {
+				/* Header */
 				.header-main {
 					padding: 15px 20px;
 				}
@@ -1878,6 +2220,7 @@
 					line-height: 1.2;
 				}
 
+				/* Hero Section - Centered for Impact */
 				.hero-section {
 					padding: 0 20px 0 8%;
 					justify-content: center;
@@ -1896,6 +2239,7 @@
 					align-self: flex-start;
 				}
 
+				/* Section Spacing - Relaxed for Mobile */
 				.college-section,
 				.levels-section,
 				.projects-section,
@@ -1906,6 +2250,7 @@
 					padding: 60px 20px;
 				}
 
+				/* Stacked Layouts */
 				.college-container {
 					flex-direction: column;
 					gap: 40px;
@@ -1915,24 +2260,27 @@
 					text-align: center;
 				}
 				.college-features {
-					display: table;
-					margin: 0 auto 30px auto;
-					text-align: left;
+					display: table; /* shrinks to fit content */
+					margin: 0 auto 30px auto; /* centers the table */
+					text-align: left; /* keeps bullets and text aligned */
 				}
 
+				/* Gallery Mobile Optimization */
 				.college-gallery {
-					display: none;
+					display: none; /* Hide on mobile as requested */
 				}
 
+				/* Levels & Testimonials */
 				.level-grid {
 					grid-template-columns: 1fr;
 					gap: 40px;
 				}
 				.level-image {
-					order: -1;
+					order: -1; /* Image first on mobile */
 				}
+				/* Testimonials - Mobile fine-tuning */
 				.testimonial-quote {
-					font-size: 1.4em;
+					font-size: 1.4em; /* Slightly smaller font for mobile */
 				}
 				.testimonial-controls {
 					margin-top: 10px;
@@ -1940,6 +2288,7 @@
 					z-index: 5;
 				}
 
+				/* Projects Grid - Adaptado para Tablet Portrait (2 columnas) y Mobile (1 columna) */
 				.projects-grid {
 					grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 				}
@@ -1953,9 +2302,10 @@
 				}
 			}
 
+			/* Mobile (max-width: 600px) */
 			@media (max-width: 600px) {
 				.footer-container {
-					gap: 45px;
+					gap: 45px; /* Más compacto para móvil */
 				}
 				.footer-column h3 {
 					margin-bottom: 15px;
@@ -1968,7 +2318,9 @@
 				}
 			}
 
+			/* Small Mobile (max-width: 480px) */
 			@media (max-width: 480px) {
+				/* Typography Adjustments */
 				.college-text h2,
 				.levels-title h3,
 				.projects-header h3,
@@ -1979,6 +2331,7 @@
 					font-size: 2em;
 				}
 
+				/* Buttons Full Width */
 				.view-more-container {
 					flex-direction: column;
 					width: 100%;
@@ -1990,6 +2343,7 @@
 					box-sizing: border-box;
 				}
 
+				/* Unity Buttons */
 				.unity-start-btn {
 					width: 100%;
 					box-sizing: border-box;
@@ -2001,10 +2355,9 @@
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
 		/>
-		<link rel="stylesheet" href="global-menu.css" />
+			<link rel="stylesheet" href="global-menu.css" />
 	</head>
 	<body ontouchstart="">
-		<!-- Header -->
 		<header>
 			<div class="header-main">
 				<div class="logo">
@@ -2025,35 +2378,9 @@
 			</div>
 		</header>
 
-		<!-- Menú Lateral / Slider -->
-		<div id="sideMenu" class="side-menu">
-			<div class="side-menu-overlay" onclick="toggleSideMenu()"></div>
-			<div class="side-menu-content">
-				<div class="side-menu-header">
-					<h3>Navegación</h3>
-				</div>
-				<ul class="side-menu-links">
-					<li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
-					<li><a href="NuestroColegio.html"><i class="fas fa-school"></i> Nuestro Colegio</a></li>
-					<li><a href="#niveles" onclick="toggleSideMenu()"><i class="fas fa-graduation-cap"></i> Niveles Educativos</a></li>
-					<li><a href="#proyectos" onclick="toggleSideMenu()"><i class="fas fa-project-diagram"></i> Proyectos</a></li>
-					<li><a href="Contacto.html"><i class="fas fa-envelope"></i> Contacto</a></li>
-				</ul>
-				<div class="side-menu-shortcuts">
-					<h4>Accesos Rápidos</h4>
-					<div class="shortcut-grid">
-						<a href="Inscripcion2027.html" class="shortcut-item"><i class="fas fa-user-plus"></i> Inscripciones</a>
-						<a href="Contacto.html" class="shortcut-item"><i class="fas fa-phone-alt"></i> Secretaría</a>
-					</div>
-				</div>
-				<div class="side-menu-footer">
-					<a href="index.html" class="back-home-btn"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
-				</div>
-			</div>
-		</div>
+		
 
 		<main>
-			<!-- Hero Section -->
 			<section class="hero-section">
 				<div class="hero-color-block"></div>
 				<div class="hero-content">
@@ -2072,9 +2399,9 @@
 					</p>
 				</div>
 				<div class="hero-shape-diagonal"></div>
+
 			</section>
 
-			<!-- Nuestro Colegio -->
 			<section id="nuestro-colegio" class="college-section">
 				<div class="college-container">
 					<div class="college-text">
@@ -2111,7 +2438,6 @@
 				</div>
 			</section>
 
-			<!-- Niveles Educativos -->
 			<section id="niveles" class="levels-section">
 				<div class="levels-container">
 					<div class="levels-title">
@@ -2128,7 +2454,7 @@
 						<div class="level-content active" data-level-content="inicial">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/entrada.png" alt="Imagen Nivel Inicial" />
+									<img src="img/entrada.png" alt="Imagen pendiente del Nivel Inicial" />
 								</div>
 								<div class="level-info">
 									<h4>Inicial</h4>
@@ -2141,7 +2467,7 @@
 						<div class="level-content" data-level-content="primario">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/IMG-20250414-WA0023.jpg" alt="Imagen Nivel Primario" />
+									<img src="img/IMG-20250414-WA0023.jpg" alt="Imagen pendiente del Nivel Primario" />
 								</div>
 								<div class="level-info">
 									<h4>Primario</h4>
@@ -2163,7 +2489,7 @@
 						<div class="level-content" data-level-content="terciario">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/DIA del profesor.jpg" alt="Imagen Nivel Terciario" />
+									<img src="img/DIA del profesor.jpg" alt="Imagen pendiente del Nivel Terciario" />
 								</div>
 								<div class="level-info">
 									<h4>Terciario</h4>
@@ -2186,42 +2512,15 @@
 				</div>
 			</section>
 
-			<!-- Proyectos -->
 			<section id="proyectos" class="projects-section">
 				<div class="projects-container">
 					<div class="projects-header">
 						<h3>Proyectos</h3>
 					</div>
-					<div class="projects-grid" id="home-projects-grid">
-						<div class="projects-card">
-							<img src="img/Cooperativa 1.jpg" alt="Cooperativa Escolar" />
-							<div class="projects-card-content">
-								<div class="date">Octubre 2025</div>
-								<h4>Cooperativa Escolar</h4>
-								<p>Iniciativas solidarias y sustentables impulsadas por nuestros estudiantes.</p>
-							</div>
-						</div>
-						<div class="projects-card">
-							<img src="img/Historia.jpg" alt="Cuidado del Ambiente" />
-							<div class="projects-card-content">
-								<div class="date">Septiembre 2025</div>
-								<h4>Cuidado del Ambiente</h4>
-								<p>Proyectos de concientización y recolección para un futuro más limpio.</p>
-							</div>
-						</div>
-						<div class="projects-card">
-							<img src="img/VIAJES.jpg" alt="Viajes Educativos" />
-							<div class="projects-card-content">
-								<div class="date">Agosto 2025</div>
-								<h4>Viajes Educativos</h4>
-								<p>Experiencias de aprendizaje fuera del aula que fortalecen la convivencia.</p>
-							</div>
-						</div>
-					</div>
+					<div class="projects-grid" id="home-projects-grid"></div>
 				</div>
 			</section>
 
-			<!-- Testimonios -->
 			<section id="testimonios" class="testimonials-section">
 				<div class="testimonials-container">
 					<div class="testimonials-grid">
@@ -2247,7 +2546,8 @@
 								<div class="testimonial-slide" data-testimonial="3">
 									<p class="testimonial-quote">
 										"Hice amigos para toda la vida y adquirí herramientas que me sirven todos los
-										días en la universidad."
+										días en la universidad.Hice amigos para toda la vida y adquirí herramientas que
+										me sirven todos los días en la universidad."
 									</p>
 									<p class="testimonial-author">Anónimo 3</p>
 									<p class="testimonial-role">Egresado 2023</p>
@@ -2269,7 +2569,7 @@
 							<img
 								src="img/usuario_default.png"
 								alt="Testimonio 1"
-								class="testimonial-img active"
+								class="testimonial-img"
 								data-testimonial-img="1"
 							/>
 							<img
@@ -2289,7 +2589,6 @@
 				</div>
 			</section>
 
-			<!-- Recorrido Virtual -->
 			<section id="virtual-tour" class="virtual-tour-section">
 				<div class="virtual-tour-container">
 					<div class="levels-title">
@@ -2343,7 +2642,6 @@
 				</div>
 			</section>
 
-			<!-- Contacto Home -->
 			<section id="contacto-home" class="contact-home-section">
 				<div class="contact-home-container">
 					<div class="contact-home-icon-box">
@@ -2352,7 +2650,7 @@
 					<h2 class="contact-home-title">¿Querés saber más?</h2>
 					<p class="contact-home-text">
 						Elegir también es animarse<br />
-						Estamos a tu disposición para responder todas tus inquietudes. Contactate con la secretaría
+						Estamos a tu disposición para responder todas tus inquietudes. Contactate con la secretaria
 						para poder recibir atención personalizada.
 					</p>
 					<a href="Contacto.html" class="view-more-btn"> Contactanos </a>
@@ -2360,7 +2658,6 @@
 			</section>
 		</main>
 
-		<!-- Footer -->
 		<footer class="footer">
 			<div class="footer-container">
 				<div class="footer-column contact-info">
@@ -2401,7 +2698,7 @@
 				</div>
 				<div class="footer-column">
 					<div class="footer-column-wrapper">
-						<h3>Encuéntranos</h3>
+						<h3>Encuentranos</h3>
 						<p>
 							9 de Julio 465, Arroyito, Córdoba. Tradición y excelencia mercedaria.
 						</p>
@@ -2429,6 +2726,8 @@
 			</div>
 		</footer>
 
+		
+
 		<script>
 			// --- Animación Hero (Letra por Letra) ---
 			function runHeroAnimation() {
@@ -2440,9 +2739,11 @@
 
 				if (!heroH1 || !paragraph) return;
 
+				// Hacer visibles los contenedores
 				heroH1.style.visibility = 'visible';
 				paragraph.style.visibility = 'visible';
 
+				// Solo envolver letras si no se ha hecho antes
 				if (heroH1.querySelectorAll('.letter').length === 0) {
 					const wrapLetters = (node) => {
 						if (node.nodeType === Node.TEXT_NODE) {
@@ -2463,41 +2764,45 @@
 					wrapLetters(heroH1);
 				}
 
+				// Reiniciar y Aplicar Animación con Stagger
 				const letters = heroH1.querySelectorAll('.letter');
 				let delay = 100;
 				const stagger = 40;
 
 				letters.forEach((letter) => {
 					letter.style.animation = 'none';
-					void letter.offsetWidth;
+					void letter.offsetWidth; // Force reflow
 					letter.style.animation = `riseIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) ${delay}ms both`;
 					delay += stagger;
 				});
 
 				paragraph.style.animation = 'none';
-				void paragraph.offsetWidth;
+				void paragraph.offsetWidth; // Force reflow
 				paragraph.style.animation = `riseIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) ${delay + 200}ms both`;
 			}
 
 			document.addEventListener('DOMContentLoaded', runHeroAnimation);
 
-			// --- Lógica del Menú Lateral ---
+			// --- Lógica del Nuevo Menú Lateral (Índice) ---
 			function toggleSideMenu() {
 				const sideMenu = document.getElementById('sideMenu');
 				const linksContainer = document.querySelector('.side-menu-links');
 				if (sideMenu) {
 					const isActive = sideMenu.classList.toggle('active');
 
-					document.documentElement.classList.toggle('no-scroll', isActive);
-					document.body.classList.toggle('no-scroll', isActive);
+					// Bloqueo de scroll en HTML y BODY para máxima compatibilidad
+					document.documentElement.classList.toggle('no-scroll');
+					document.body.classList.toggle('no-scroll');
 
 					if (isActive && linksContainer) {
+						// Asegurar que el scrollbar se reconozca inmediatamente
 						linksContainer.scrollTop = 1;
 						linksContainer.scrollTop = 0;
 					}
 				}
 			}
 
+			// --- Lógica del Menú Desplegable (Móvil) ---
 			function toggleMenu() {
 				const menu = document.getElementById('dropdownMenu');
 				if (menu) {
@@ -2522,7 +2827,7 @@
 				}
 			});
 
-			// --- Parallax / Zoom Hero Section ---
+			// --- Efecto Parallax / Zoom al hacer Scroll (Hero Section) ---
 			document.addEventListener(
 				'scroll',
 				() => {
@@ -2535,7 +2840,9 @@
 					const scrollPosition = Math.max(0, window.scrollY);
 					const windowHeight = window.innerHeight;
 
+					// Solo calcular si estamos cerca del Hero (optimización)
 					if (scrollPosition <= windowHeight) {
+						// Zoom lineal suave: escala de forma constante y fluida
 						const scale = 1 + scrollPosition * 0.00015;
 						heroSection.style.setProperty('--hero-scale', scale);
 					}
@@ -2543,9 +2850,8 @@
 				{ passive: true }
 			);
 
-			// --- Lógica Interactiva (Niveles, Testimonios y Tour Virtual) ---
+			// --- Lógica para la Sección de Niveles ---
 			document.addEventListener('DOMContentLoaded', function () {
-				// --- Niveles ---
 				const levelTabs = document.querySelectorAll('.level-tab');
 				const levelContents = document.querySelectorAll('.level-content');
 				const prevLevelBtn = document.getElementById('prev-level');
@@ -2605,130 +2911,549 @@
 
 				if (pauseLevelBtn) {
 					pauseLevelBtn.addEventListener('click', () => {
-						isLevelPlaying = !isLevelPlaying;
-						const icon = pauseLevelBtn.querySelector('i');
 						if (isLevelPlaying) {
-							if (icon) icon.className = 'fas fa-pause';
-							startLevelRotation();
-						} else {
-							if (icon) icon.className = 'fas fa-play';
 							stopLevelRotation();
+							pauseLevelBtn.innerHTML = '<i class="fas fa-play"></i>';
+							isLevelPlaying = false;
+						} else {
+							isLevelPlaying = true;
+							startLevelRotation();
+							pauseLevelBtn.innerHTML = '<i class="fas fa-pause"></i>';
 						}
 					});
 				}
 
+				// Iniciar rotación si es móvil
 				startLevelRotation();
 
-				// --- Testimonios ---
-				const slides = document.querySelectorAll('.testimonial-slide');
-				const images = document.querySelectorAll('.testimonial-img');
-				const prevTestimonialBtn = document.getElementById('prev-testimonial');
-				const nextTestimonialBtn = document.getElementById('next-testimonial');
-				const pauseTestimonialBtn = document.getElementById('pause-testimonial');
-
-				let currentTestimonial = 0;
-				let testimonialInterval;
-				let isTestimonialPlaying = true;
-
-				function showTestimonial(index) {
-					currentTestimonial = index;
-					slides.forEach((slide, i) => {
-						slide.classList.toggle('active', i === index);
-					});
-					images.forEach((img, i) => {
-						img.classList.toggle('active', i === index);
-					});
-				}
-
-				function startTestimonialRotation() {
-					stopTestimonialRotation();
-					if (isTestimonialPlaying) {
-						testimonialInterval = setInterval(() => {
-							currentTestimonial = (currentTestimonial + 1) % slides.length;
-							showTestimonial(currentTestimonial);
-						}, 6000);
+				// Reiniciar rotación al cambiar el tamaño de ventana (por si pasa a tablet/móvil)
+				window.addEventListener('resize', () => {
+					if (window.innerWidth <= 768) {
+						if (isLevelPlaying) startLevelRotation();
+					} else {
+						stopLevelRotation();
 					}
+				});
+			});
+
+			// --- Lógica para la Sección de Testimonios ---
+			const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+			const testimonialImages = document.querySelectorAll('.testimonial-img');
+			const prevBtn = document.getElementById('prev-testimonial');
+			const nextBtn = document.getElementById('next-testimonial');
+			const pauseBtn = document.getElementById('pause-testimonial');
+			let currentTestimonial = 0;
+			const totalTestimonials = testimonialSlides.length;
+			let isPlaying = true;
+			let autoRotateInterval;
+			let isNavigating = false; // Bandera de seguridad para tiempos muertos
+
+			function showTestimonial(index) {
+				testimonialSlides.forEach((slide, i) => {
+					slide.classList.toggle('active', i === index);
+				});
+
+				// Ajustar altura del contenedor dinámicamente según el testimonio activo
+				const container = document.getElementById('testimonial-text-container');
+				const activeSlide = testimonialSlides[index];
+				if (container && activeSlide) {
+					requestAnimationFrame(() => {
+						container.style.height = activeSlide.offsetHeight + 'px';
+					});
 				}
 
-				function stopTestimonialRotation() {
-					clearInterval(testimonialInterval);
-				}
+				testimonialImages.forEach((img, i) => {
+					const pos = (i - index + totalTestimonials) % totalTestimonials;
+					if (pos === 0) {
+						img.style.transform = 'translateX(25%) scale(1)';
+						img.style.opacity = '1';
+						img.style.zIndex = '3';
+					} else if (pos === 1) {
+						img.style.transform = 'translateX(50%) scale(0.9)';
+						img.style.opacity = '0.5';
+						img.style.zIndex = '2';
+					} else {
+						img.style.transform = 'translateX(0) scale(0.8)';
+						img.style.opacity = '0.3';
+						img.style.zIndex = '1';
+					}
+				});
+			}
 
-				if (prevTestimonialBtn) {
-					prevTestimonialBtn.addEventListener('click', () => {
-						currentTestimonial = (currentTestimonial - 1 + slides.length) % slides.length;
+			// Navegación con seguridad de desfase
+			const nextSlide = () => {
+				if (isNavigating) return;
+				isNavigating = true;
+				setTimeout(() => (isNavigating = false), 600);
+
+				currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+				showTestimonial(currentTestimonial);
+				if (isPlaying) startAutoRotate();
+			};
+
+			const prevSlide = () => {
+				if (isNavigating) return;
+				isNavigating = true;
+				setTimeout(() => (isNavigating = false), 600);
+
+				currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+				showTestimonial(currentTestimonial);
+				if (isPlaying) startAutoRotate();
+			};
+
+			// Navegación al tocar imágenes
+			testimonialImages.forEach((img, i) => {
+				img.style.cursor = 'pointer';
+				img.addEventListener('click', () => {
+					// Si el mouse se soltó después de un arrastre, no hacer nada
+					if (wasDragged) {
+						wasDragged = false;
+						return;
+					}
+
+					if (isNavigating) return;
+					const index = parseInt(img.dataset.testimonialImg) - 1;
+					if (index !== currentTestimonial) {
+						isNavigating = true;
+						setTimeout(() => (isNavigating = false), 600);
+						currentTestimonial = index;
 						showTestimonial(currentTestimonial);
-						if (isTestimonialPlaying) startTestimonialRotation();
-					});
-				}
+						if (isPlaying) startAutoRotate();
+					}
+				});
+			});
 
-				if (nextTestimonialBtn) {
-					nextTestimonialBtn.addEventListener('click', () => {
-						currentTestimonial = (currentTestimonial + 1) % slides.length;
-						showTestimonial(currentTestimonial);
-						if (isTestimonialPlaying) startTestimonialRotation();
-					});
-				}
+			// Soporte para Deslizar (Swipe) en imágenes
+			const imagesContainer = document.querySelector('.testimonial-images');
+			let startPos = 0;
+			let isDragging = false;
+			let wasDragged = false;
 
-				if (pauseTestimonialBtn) {
-					pauseTestimonialBtn.addEventListener('click', () => {
-						isTestimonialPlaying = !isTestimonialPlaying;
-						const icon = pauseTestimonialBtn.querySelector('i');
-						if (isTestimonialPlaying) {
-							if (icon) icon.className = 'fas fa-pause';
-							startTestimonialRotation();
-						} else {
-							if (icon) icon.className = 'fas fa-play';
-							stopTestimonialRotation();
-						}
-					});
-				}
+			imagesContainer.addEventListener('mousedown', (e) => {
+				if (e.target.tagName !== 'IMG') return;
+				startPos = e.clientX;
+				isDragging = true;
+				wasDragged = false;
+				imagesContainer.style.cursor = 'grabbing';
+			});
 
-				if (slides.length > 0) {
-					showTestimonial(0);
-					startTestimonialRotation();
-				}
-
-				// --- Tour Virtual Unity ---
-				const startTourBtn = document.getElementById('start-tour-btn');
-				const closeTourBtn = document.getElementById('close-tour-btn');
-				const fullscreenBtn = document.getElementById('fullscreen-btn');
-				const unityTeaser = document.getElementById('unity-teaser');
-				const unityGameContainer = document.getElementById('unity-game-container');
-				const unityControls = document.getElementById('unity-controls');
-				const unityIframe = document.getElementById('unity-iframe');
-
-				if (startTourBtn && unityTeaser && unityGameContainer && unityIframe) {
-					startTourBtn.addEventListener('click', () => {
-						unityTeaser.style.display = 'none';
-						unityGameContainer.style.display = 'block';
-						if (unityControls) unityControls.style.display = 'flex';
-						const dataSrc = unityIframe.getAttribute('data-src');
-						if (dataSrc) unityIframe.src = dataSrc;
-					});
-				}
-
-				if (closeTourBtn && unityTeaser && unityGameContainer && unityIframe) {
-					closeTourBtn.addEventListener('click', () => {
-						unityGameContainer.style.display = 'none';
-						if (unityControls) unityControls.style.display = 'none';
-						unityTeaser.style.display = 'flex';
-						unityIframe.src = '';
-					});
-				}
-
-				if (fullscreenBtn && unityIframe) {
-					fullscreenBtn.addEventListener('click', () => {
-						if (unityIframe.requestFullscreen) {
-							unityIframe.requestFullscreen();
-						} else if (unityIframe.webkitRequestFullscreen) {
-							unityIframe.webkitRequestFullscreen();
-						} else if (unityIframe.msRequestFullscreen) {
-							unityIframe.msRequestFullscreen();
-						}
-					});
+			window.addEventListener('mouseup', (e) => {
+				if (!isDragging) return;
+				isDragging = false;
+				if (imagesContainer) imagesContainer.style.cursor = 'default';
+				
+				const diff = e.clientX - startPos;
+				if (Math.abs(diff) > 10) wasDragged = true;
+				
+				if (diff < -40) {
+					nextSlide();
+				} else if (diff > 40) {
+					prevSlide();
 				}
 			});
+
+			imagesContainer.addEventListener(
+				'touchstart',
+				(e) => {
+					startPos = e.touches[0].clientX;
+				},
+				{ passive: true }
+			);
+
+			imagesContainer.addEventListener('touchend', (e) => {
+				const diff = e.changedTouches[0].clientX - startPos;
+				if (diff < -30) {
+					nextSlide();
+				} else if (diff > 30) {
+					prevSlide();
+				}
+			});
+
+			window.addEventListener('resize', () => {
+				const container = document.getElementById('testimonial-text-container');
+				const activeSlide = testimonialSlides[currentTestimonial];
+				if (container && activeSlide) {
+					container.style.height = activeSlide.offsetHeight + 'px';
+				}
+			});
+
+			function startAutoRotate() {
+				stopAutoRotate();
+				autoRotateInterval = setInterval(nextSlide, 5000);
+			}
+
+			function stopAutoRotate() {
+				clearInterval(autoRotateInterval);
+			}
+
+			nextBtn.addEventListener('click', nextSlide);
+			prevBtn.addEventListener('click', prevSlide);
+
+			// Prevenir el arrastre predeterminado (Ghost Images) en TODAS las imágenes y enlaces
+			// Usamos delegación de eventos para capturar incluso el contenido cargado dinámicamente (como Proyectos)
+			document.addEventListener('dragstart', (e) => {
+				if (e.target.tagName === 'IMG' || e.target.closest('.projects-card')) {
+					e.preventDefault();
+				}
+			});
+
+			pauseBtn.addEventListener('click', () => {
+				if (isPlaying) {
+					stopAutoRotate();
+					pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+					isPlaying = false;
+				} else {
+					startAutoRotate();
+					pauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+					isPlaying = true;
+				}
+			});
+
+			showTestimonial(currentTestimonial);
+			startAutoRotate();
+
+			// Recalcular altura del testimonio document.addEventListener('DOMContentLoaded', () => {activo para evitar recortes cuando se cargan las fuentes o se inicializa el DOM
+			document.addEventListener('DOMContentLoaded', () => {
+				const container = document.getElementById('testimonial-text-container');
+				const activeSlide = testimonialSlides[currentTestimonial];
+				if (container && activeSlide) {
+					container.style.height = activeSlide.offsetHeight + 'px';
+				}
+			});
+
+			window.addEventListener('load', () => {
+				const container = document.getElementById('testimonial-text-container');
+				const activeSlide = testimonialSlides[currentTestimonial];
+				if (container && activeSlide) {
+					container.style.height = activeSlide.offsetHeight + 'px';
+				}
+			});
+
+			if (document.fonts) {
+				document.fonts.ready.then(() => {
+					const container = document.getElementById('testimonial-text-container');
+					const activeSlide = testimonialSlides[currentTestimonial];
+					if (container && activeSlide) {
+						container.style.height = activeSlide.offsetHeight + 'px';
+					}
+				});
+			}
+
+			// --- Lógica para la Sección de Recorrido Virtual ---
+			const unityTeaser = document.getElementById('unity-teaser');
+			const unityGameContainer = document.getElementById('unity-game-container');
+			const startBtn = document.getElementById('start-tour-btn');
+			const closeBtn = document.getElementById('close-tour-btn');
+			const unityIframe = document.getElementById('unity-iframe');
+
+			// --- INICIO: NUEVOS ELEMENTOS ---
+			const unityControls = document.getElementById('unity-controls'); // Contenedor de botones
+			const fullscreenBtn = document.getElementById('fullscreen-btn'); // Botón de pantalla completa
+			// --- FIN: NUEVOS ELEMENTOS ---
+
+			const gameSrc = unityIframe.dataset.src;
+
+			if (startBtn) {
+				startBtn.addEventListener('click', function () {
+					// Esperamos 250ms para completar visualmente la transición e iniciar la experiencia
+					setTimeout(() => {
+						unityTeaser.style.display = 'none';
+						unityGameContainer.style.display = 'block';
+						unityControls.style.display = 'flex'; // <-- MOSTRAR CONTROLES
+
+						if (unityIframe.getAttribute('src') !== gameSrc) {
+							unityIframe.setAttribute('src', gameSrc);
+						}
+					}, 250);
+				});
+			}
+
+			if (closeBtn) {
+				closeBtn.addEventListener('click', function () {
+					// Esperamos 250ms para completar visualmente la transición y cerrar la experiencia
+					setTimeout(() => {
+						unityGameContainer.style.display = 'none';
+						unityControls.style.display = 'none'; // <-- OCULTAR CONTROLES
+						unityTeaser.style.display = 'flex';
+						unityIframe.setAttribute('src', '');
+					}, 250);
+				});
+			}
+
+			// --- INICIO: SCRIPT DE PANTALLA COMPLETA (AHORA SÍ) ---
+			if (fullscreenBtn) {
+				fullscreenBtn.addEventListener('click', function () {
+					const unityIframeEl = document.getElementById('unity-iframe');
+
+					// Buscamos la 'unityInstance' que expusimos en el Paso 1
+					if (
+						unityIframeEl &&
+						unityIframeEl.contentWindow &&
+						unityIframeEl.contentWindow.unityInstance
+					) {
+						// ¡Esta es la línea clave!
+						// Llama a la función interna de Unity para poner pantalla completa
+						unityIframeEl.contentWindow.unityInstance.SetFullscreen(1);
+					} else {
+						console.error(
+							"No se pudo encontrar 'unityInstance' en el iframe. ¿Te acordaste de modificar el index.html de Unity para que diga 'window.unityInstance = unityInstance'?"
+						);
+						// Fallback (el método que no te gustó) por si algo falla
+						if (unityIframeEl.requestFullscreen) {
+							unityIframeEl.requestFullscreen();
+						}
+					}
+				});
+			}
+			// --- FIN: SCRIPT DE PANTALLA COMPLETA ---
+
+			// --- Lógica para cargar los 3 últimos proyectos en el Home ---
+			const homeProjectsGrid = document.getElementById('home-projects-grid');
+
+			// Función para medir y procesar palabras largas con precisión dinámica
+			function processLongWords(text, fontStyle, containerWidth) {
+				if (!text) return '';
+				const canvas = document.createElement('canvas');
+				const context = canvas.getContext('2d');
+				context.font = fontStyle;
+
+				// El margen de seguridad (padding real de la tarjeta + espacio para el guion)
+				const safeWidth = containerWidth - 85;
+
+				return text
+					.split(' ')
+					.map((word) => {
+						const metrics = context.measureText(word);
+						// REGLA: Si la palabra no cabe en una línea vacía del contenedor actual, aplicamos guiones
+						if (metrics.width > safeWidth) {
+							let parts = [];
+							for (let i = 0; i < word.length; i += 5) {
+								parts.push(word.substring(i, i + 5));
+							}
+							return parts.join('&shy;');
+						}
+						return word;
+					})
+					.join(' ');
+			}
+
+			if (homeProjectsGrid) {
+				fetch('templates/data/index-proyectos.json')
+					.then((response) => {
+						if (!response.ok) {
+							console.error('Error: No se pudo cargar el archivo templates/data/index-proyectos.json');
+							throw new Error('Error al cargar proyectos');
+						}
+						return response.json();
+					})
+					.then((projects) => {
+						projects.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+						// En tablets portrait (entre 768px y 992px) mostramos 4 tarjetas para un diseño 2x2 prolijo
+						const isTabletPortrait = window.innerWidth >= 768 && window.innerWidth <= 992;
+						const numProjects = isTabletPortrait ? 4 : 3;
+						const recent = projects.slice(0, numProjects);
+
+						// Calculamos el ancho actual de una tarjeta basado en el grid real
+						const gridWidth = homeProjectsGrid.offsetWidth;
+
+						// Determinamos columnas reales para el procesamiento de texto (coincidiendo con CSS)
+						let cols = 1;
+						if (window.innerWidth <= 768) {
+							// En tablet portrait/mobile usamos minmax(280px, 1fr) que da 2 cols en tablet
+							cols = Math.floor(gridWidth / 280) || 1;
+						} else {
+							cols = Math.floor(gridWidth / 350) || 1;
+						}
+						const cardWidth = gridWidth / cols;
+
+						homeProjectsGrid.innerHTML = '';
+
+						recent.forEach((proj) => {
+							// Validación de campos críticos del JSON
+							const required = ['id', 'title', 'image', 'date', 'summary', 'displayDate'];
+							required.forEach(field => {
+								if (proj[field] === undefined || proj[field] === null) {
+									console.error(`Error: El proyecto con ID '${proj.id || 'desconocido'}' no tiene el campo '${field}' definido.`);
+								}
+							});
+
+							const card = document.createElement('a');
+							card.href = `templates/Proyecto.html?id=${proj.id}`;
+							card.className = 'projects-card';
+
+							const maxChars = 200;
+							let summary = proj.summary || '';
+							if (summary.length > maxChars) {
+								summary = summary.substring(0, maxChars).trim() + '...';
+							}
+
+							// Medición usando la tipografía Heuristica real del sitio
+							const safeTitle = processLongWords(proj.title || 'Sin Título', 'bold 28px Heuristica', cardWidth);
+							const safeSummary = processLongWords(summary, '16px Heuristica', cardWidth);
+
+							card.innerHTML = `
+                                <img src="${proj.image || ''}" alt="${proj.title || ''}" loading="lazy">
+                                <div class="projects-card-content">
+                                    <p class="date">${proj.displayDate || ''}</p>
+                                    <h4>${safeTitle}</h4>
+                                    <p>${safeSummary}</p>
+                                </div>
+                            `;
+							homeProjectsGrid.appendChild(card);
+						});
+					})
+					.catch((err) => console.error('Error detallado en la carga de proyectos home:', err));
+			}
+
+			// --- Lógica para la Transición entre Páginas ---
+			if ('history' in window && 'scrollRestoration' in history) {
+				history.scrollRestoration = 'manual';
+			}
+
+			window.addEventListener('pageshow', function (event) {
+				if (event.persisted) {
+					// Si la página se carga desde el historial (bfcache)
+					document.body.classList.remove('fade-out');
+					// Forzamos el reinicio de la animación de entrada
+					document.body.style.animation = 'none';
+					void document.body.offsetWidth;
+					document.body.style.animation = '';
+					// Reiniciar animaciones del Hero
+					runHeroAnimation();
+				}
+			});
+
+			document.addEventListener('DOMContentLoaded', () => {
+				runHeroAnimation();
+				
+				// Verificación de IDs Críticos del DOM
+				document.addEventListener('DOMContentLoaded', () => {
+					const criticalIDs = [
+						'home-projects-grid', 'dropdownMenu', 'unity-teaser', 
+						'unity-game-container', 'start-tour-btn', 'unity-iframe',
+						'testimonial-text-container'
+					];
+					criticalIDs.forEach(id => {
+						if (!document.getElementById(id)) {
+							console.error(`Error: El contenedor esencial con ID '${id}' no fue encontrado en el DOM.`);
+						}
+					});
+				});
+
+				// Handler genérico de feedback táctil (.active-press) de alta fidelidad para móviles, tablets y pc
+				let activePressEl = null;
+				let pressStartX = 0;
+				let pressStartY = 0;
+				let pressStartTime = 0;
+				let activePressTimeout = null;
+
+				document.addEventListener('pointerdown', (e) => {
+					const pressable = e.target.closest('.projects-card, .level-tab, .testimonial-btn, .unity-start-btn, .unity-close-btn, .view-more-btn, .shortcut-item, .back-home-btn, .side-menu-links li a, .social-icons a, .get-directions a, .header-main nav ul li a, .header-main .logo a, .header-main .menu-icon, .arrow-link, .close-menu-btn, .mobile-menu-list li a, .mobile-menu-highlight a, .footer-column ul li a, .contact-info a, .footer-bottom-links a');
+					if (!pressable) return;
+
+					activePressEl = pressable;
+					pressStartX = e.clientX;
+					pressStartY = e.clientY;
+					pressStartTime = Date.now();
+
+					// Añadimos feedback táctil instantáneo
+					activePressEl.classList.add('active-press');
+
+					if (activePressTimeout) {
+						clearTimeout(activePressTimeout);
+						activePressTimeout = null;
+					}
+				});
+
+				document.addEventListener('pointermove', (e) => {
+					if (!activePressEl) return;
+
+					// Si hay movimiento significativo (arrastre/scroll de más de 10px), cancelamos el estado visual
+					const deltaX = Math.abs(e.clientX - pressStartX);
+					const deltaY = Math.abs(e.clientY - pressStartY);
+					if (deltaX > 10 || deltaY > 10) {
+						activePressEl.classList.remove('active-press');
+						activePressEl = null;
+						if (activePressTimeout) {
+							clearTimeout(activePressTimeout);
+							activePressTimeout = null;
+						}
+					}
+				});
+
+				document.addEventListener('pointerup', () => {
+					if (!activePressEl) return;
+
+					// Garantizamos un ciclo total de 100ms (snappy y veloz) desde touchstart para toques rápidos
+					const elapsed = Date.now() - pressStartTime;
+					const remaining = Math.max(0, 100 - elapsed);
+
+					const el = activePressEl;
+					activePressTimeout = setTimeout(() => {
+						el.classList.remove('active-press');
+					}, remaining);
+					activePressEl = null;
+				});
+
+				document.addEventListener('pointercancel', () => {
+					if (!activePressEl) return;
+					activePressEl.classList.remove('active-press');
+					activePressEl = null;
+					if (activePressTimeout) {
+						clearTimeout(activePressTimeout);
+						activePressTimeout = null;
+					}
+				});
+
+				// Delegación de eventos para transición suave entre páginas (incluye proyectos dinámicos)
+				document.addEventListener('click', (e) => {
+					const link = e.target.closest('a');
+					if (!link) return;
+
+					const href = link.getAttribute('href');
+					if (
+						href &&
+						!href.startsWith('#') &&
+						!link.onclick &&
+						!href.includes('mailto:') &&
+						!href.includes('tel:') &&
+						link.getAttribute('target') !== '_blank'
+					) {
+						// Ignorar si el usuario presionó una tecla de modificación para abrir en nueva pestaña
+						if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) return;
+
+						e.preventDefault();
+
+						// El fade-out comienza de inmediato al hacer click para máxima respuesta táctil
+						document.body.classList.add('fade-out');
+
+						// Esperamos 250ms exactos para completar la transición de opacidad antes de cambiar de url
+						setTimeout(() => {
+							window.location.href = href;
+						}, 250);
+					}
+				});
+
+				// Manejo de clicks en los enlaces del menú lateral (ejecución instantánea para evitar freeze)
+				const sideMenuLinks = document.querySelectorAll('.side-menu-links li a');
+				sideMenuLinks.forEach(link => {
+					link.addEventListener('click', (e) => {
+						e.preventDefault();
+						const targetId = link.getAttribute('href');
+						
+						// Cerrar el menú lateral
+						toggleSideMenu();
+						
+						// Desplazarse suavemente al elemento destino
+						const targetEl = document.querySelector(targetId);
+						if (targetEl) {
+							targetEl.scrollIntoView({ behavior: 'smooth' });
+						}
+					});
+				});
+			}); // Cierre del DOMContentLoaded
 		</script>
+			<script src="global-menu.js" defer></script>
 	</body>
 </html>
