@@ -144,9 +144,8 @@
       }
       text.textContent = label;
       button.addEventListener('click', () => {
-        const parent = button.parentElement;
-        parent.classList.toggle('open');
-        button.setAttribute('aria-label', `${parent.classList.contains('open') ? 'Cerrar' : 'Abrir'} ${label}`);
+        item.classList.toggle('open');
+        button.setAttribute('aria-label', `${item.classList.contains('open') ? 'Cerrar' : 'Abrir'} ${label}`);
       });
 
       const list = document.createElement('ul');
