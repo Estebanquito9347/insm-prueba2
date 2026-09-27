@@ -1300,7 +1300,7 @@
 										type="email"
 										id="alumno-mail-institucional"
 										name="Alumno - Correo Institucional"
-										pattern="[a-zA-Z0-9._%+-]+@institutolamerced\.edu\.ar"
+										pattern="[a-zA-Z0-9._%+\-]+@institutolamerced\.edu\.ar"
 										oninvalid="this.setCustomValidity('El correo debe ser el institucional, terminado en @institutolamerced.edu.ar')"
 										oninput="this.setCustomValidity('')"
 										placeholder="nombre.apellido@institutolamerced.edu.ar"
@@ -1756,7 +1756,14 @@
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify(payload)
 						});
-						const data = await res.json();
+
+						let data;
+						try {
+							data = await res.json();
+						} catch (jsonErr) {
+							// La respuesta no fue JSON (por ej. una página de error 404/500 del servidor)
+							throw new Error(`El servidor respondió con un error (código ${res.status}). Avisá al administrador del sitio.`);
+						}
 
 						if (res.ok && data.ok) {
 							alert('¡Gracias! Tu inscripción fue enviada con éxito.');
@@ -1769,7 +1776,7 @@
 						}
 					} catch (err) {
 						console.error(err);
-						alert('Error de red. Por favor, reintentá.');
+						alert(err && err.message ? err.message : 'Error de red. Por favor, reintentá.');
 					} finally {
 						submitBtn.disabled = false;
 						submitBtn.textContent = textoOriginal;
