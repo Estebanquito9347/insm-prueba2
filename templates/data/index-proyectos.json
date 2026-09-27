@@ -5,7 +5,7 @@
         "date": "2025-11-27",
         "displayDate": "27 de Noviembre",
         "summary": "El tradicional desfile de fin de año se transformó en una noche mágica con moda, música y actuaciones de toda la escuela.",
-        "image": "img/Cooperativa 1.jpg"
+        "image": "img/Cooperativa 1.webp"
     },
     {
         "id": "evento_2024",
@@ -13,7 +13,7 @@
         "date": "2024-12-5",
         "displayDate": "5 de Diciembre",
         "summary": "El tradicional desfile de fin de año se transformó en una noche mágica con moda, música y actuaciones de toda la escuela.",
-        "image": "img/Cooperativa 1.jpg"
+        "image": "img/Cooperativa 1.webp"
     },
     {
         "id": "evento_2023",
@@ -21,7 +21,7 @@
         "date": "2023-12-6",
         "displayDate": "6 de Diciembre",
         "summary": "El tradicional desfile de fin de año se transformó en una noche mágica con moda, música y actuaciones de toda la escuela.",
-        "image": "img/Historia.jpg"
+        "image": "img/Historia.webp"
     },
     {
         "id": "revista_eme_2025",
@@ -29,7 +29,7 @@
         "date": "2025-11-19",
         "displayDate": "19 de Noviembre",
         "summary": "La Promoción 2025 de Humanidades produjo la edición N° 17 de la Revista EME, reflejando meses de trabajo, reflexión y producción colectiva.",
-        "image": "img/Screenshot 2025-12-22 161503.png"
+        "image": "img/Screenshot 2025-12-22 161503.webp"
     },
     {
         "id": "cortos_2024",
@@ -37,7 +37,7 @@
         "date": "2024-11-07",
         "displayDate": "7 de Noviembre",
         "summary": "La Promoción 2024 de Informática realizó cortometrajes basados en cuentos argentinos en el marco del proyecto Premios Torres.",
-        "image": "img/Screenshot 2025-12-23 120617.png"
+        "image": "img/Screenshot 2025-12-23 120617.webp"
     },
     {
         "id": "revista_eme_2024",
@@ -45,7 +45,7 @@
         "date": "2024-11-20",
         "displayDate": "20 de Noviembre",
         "summary": "La Promoción 2024 de Humanidades produjo la edición N° 16 de la Revista EME, reflejando meses de trabajo, reflexión y producción colectiva.",
-        "image": "img/Cooperativa 1.jpg"
+        "image": "img/Cooperativa 1.webp"
     },
     {
         "id": "modelo_onu_2026",
@@ -53,7 +53,7 @@
         "date": "2026-08-21",
         "displayDate": "21 de Agosto",
         "summary": "Estudiantes de diversos cursos y de la Promoción 2026 de Humanidades participaron activamente del Modelo de las Naciones Unidas en San Francisco, donde asumieron el rol de delegados de diferentes países para debatir problemáticas globales.",
-        "image": "img/modelo_onu_2026_portada.jpg"
+        "image": "img/modelo_onu_2026_portada.webp"
     },
     {
         "id": "copa_robotica_2026",
@@ -61,6 +61,6 @@
         "date": "2026-08-13",
         "displayDate": "13 de Agosto",
         "summary": "Estudiantes de la especialidad de Informática, compitieron activamente en la Copa Robótica mediante el diseño y la programación de sus propios robots.",
-        "image": "img/copa_robotica_2026_portada.jpg"
+        "image": "img/copa_robotica_2026_portada.webp"
     }
 ]

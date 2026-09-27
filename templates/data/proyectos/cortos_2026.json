@@ -2,13 +2,13 @@
 	"hero": {
 		"titleLine1": "Premios Torres",
 		"titleLine2": "Edición 2026",
-		"backgroundImage": "../img/premios_torres_2026_portada.jpg"
+		"backgroundImage": "../img/premios_torres_2026_portada.webp"
 	},
 	"general": {
 		"date": "XX de Mes 2026",
 		"summary": "\"Premios Torres 2026 fue un proyecto audiovisual realizado por la Promoción 2026 de la especialidad de Informática, basado en la adaptación de cuentos de la literatura argentina en formato de cortometrajes.\"",
 		"detail": "Los Premios Torres 2026 fueron un proyecto desarrollado por los estudiantes de la Promoción 2026 de la especialidad de Informática, quienes realizaron cortometrajes inspirados en cuentos de la literatura argentina. A través del lenguaje audiovisual, los alumnos adaptaron relatos clásicos y contemporáneos, combinando narrativa, tecnología y creatividad.<br><br>El proyecto contó con el acompañamiento y la guía de los profesores a cargo, quienes orientaron a los estudiantes en las distintas etapas de producción. La propuesta culminó en una instancia de exhibición y premiación que celebró el trabajo colaborativo y el compromiso artístico de los participantes.",
-		"image": "../img/premios_torres_2026_intro.jpg"
+		"image": "../img/premios_torres_2026_intro.webp"
 	},
 	"academic": {
 		"value1": "Promoción 2026 Informática",
@@ -17,8 +17,8 @@
 		"icon3": "fas fa-film"
 	},
 	"gallery": [
-		"../img/premios_torres_2026_1.jpg",
-		"../img/premios_torres_2026_2.jpg"
+		"../img/premios_torres_2026_1.webp",
+		"../img/premios_torres_2026_2.webp"
 	],
 	"videos": [
 		""
