@@ -1710,6 +1710,16 @@
 
 			const formInscripcion = document.getElementById('form-inscripcion-el');
 			if (formInscripcion) {
+				const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4 MB, margen seguro para el límite de la función serverless
+
+				const archivoABase64 = (file) =>
+					new Promise((resolve, reject) => {
+						const reader = new FileReader();
+						reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
+						reader.onerror = () => reject(reader.error);
+						reader.readAsDataURL(file);
+					});
+
 				formInscripcion.addEventListener('submit', async function (e) {
 					e.preventDefault();
 					const submitBtn = formInscripcion.querySelector('.submit-btn');
@@ -1718,10 +1728,33 @@
 					submitBtn.textContent = 'Enviando...';
 
 					try {
+						const fileInput = document.getElementById('boletin');
+						const file = fileInput && fileInput.files[0];
+
+						if (file && file.size > MAX_FILE_SIZE) {
+							alert('El archivo del boletín no puede superar los 4 MB. Por favor, subí uno más liviano.');
+							return;
+						}
+
+						// Armamos un objeto plano con todos los campos del formulario (menos el archivo)
 						const formData = new FormData(formInscripcion);
+						const payload = {};
+						formData.forEach((value, key) => {
+							if (key === 'boletin') return;
+							payload[key] = value;
+						});
+
+						// El archivo se manda aparte, codificado en base64
+						if (file) {
+							payload.boletinNombre = file.name;
+							payload.boletinTipo = file.type;
+							payload.boletinBase64 = await archivoABase64(file);
+						}
+
 						const res = await fetch('/api/inscripciones', {
 							method: 'POST',
-							body: formData
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(payload)
 						});
 						const data = await res.json();
 
