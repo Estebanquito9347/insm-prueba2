@@ -3,7 +3,21 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Insm - Nivel Inicial</title>
+        <meta name="description" content="Nivel Inicial del Instituto Nuestra Señora de la Merced de Arroyito, Córdoba. Conocé nuestra propuesta educativa, áreas curriculares, inscripción y documentación institucional." />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="theme-color" content="#1a4f8d" />
+        <link rel="canonical" href="https://webescolar-web-escolar.vercel.app/NivelInicial.html" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Nivel Inicial | Instituto Nuestra Señora de la Merced" />
+        <meta property="og:description" content="Información del Nivel Inicial del Instituto Nuestra Señora de la Merced de Arroyito, Córdoba." />
+        <meta property="og:url" content="https://webescolar-web-escolar.vercel.app/NivelInicial.html" />
+        <meta property="og:image" content="https://webescolar-web-escolar.vercel.app/img/20250806_092322.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Nivel Inicial | Instituto Nuestra Señora de la Merced" />
+        <meta name="twitter:description" content="Información del Nivel Inicial del Instituto Nuestra Señora de la Merced de Arroyito, Córdoba." />
+        <meta name="twitter:image" content="https://webescolar-web-escolar.vercel.app/img/20250806_092322.webp" />
+        <title>Nivel Inicial | Instituto Nuestra Señora de la Merced</title>
+        <link rel="preload" as="image" href="img/20250806_092322.webp" fetchpriority="high" />
         <style>
             /* --- Fuentes --- */
             @font-face {
@@ -54,14 +68,8 @@
             main.empty-level-page {
                 display: block;
             }
-            main.empty-level-page .main-content-section {
-                display: none;
-            }
             main.empty-level-page .hero-content h1 {
                 visibility: visible;
-            }
-            main.empty-level-page .hero-content p {
-                display: none;
             }
             body.fade-out {
                 opacity: 0;
@@ -169,6 +177,22 @@
                 font-size: 1.3em;
                 cursor: pointer;
             }
+            .header-main .menu-icon button {
+                background: transparent;
+                border: 0;
+                color: inherit;
+                font: inherit;
+                padding: 4px;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .header-main .menu-icon button:focus-visible {
+                outline: 2px solid #f39c12;
+                outline-offset: 4px;
+                border-radius: 4px;
+            }
 
             /* --- Hero Section --- */
             .hero-section {
@@ -197,8 +221,6 @@
                 background-size: cover;
                 z-index: 0;
                 transform: scale(var(--hero-scale, 1));
-                will-change: transform;
-                transition: transform 0.3s ease-out;
             }
 
             /* Gradiente Oscuro */
@@ -1428,7 +1450,6 @@
                 height: 100%; 
                 align-items: center;
                 transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-                will-change: transform;
                 padding-left: 60px; /* Padding Desktop Original */
             }
 
@@ -1720,12 +1741,25 @@
                 .menu-content { grid-template-columns: 1fr; }
                 .hero-content h1 { font-size: 2.8em; }
             }
+
+            @media (prefers-reduced-motion: reduce) {
+                html { scroll-behavior: auto; }
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
         </style>
         <link rel="icon" href="img/favicon.ico" type="image/ico" />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+            media="print"
+            onload="this.media='all'"
         />
+        <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></noscript>
     		<link rel="stylesheet" href="global-menu.css" />
 	</head>
     <body>
@@ -1733,23 +1767,23 @@
             <div class="header-main">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="img/favicon.ico" alt="Logo INSM" />
+                        <img src="img/favicon.ico" alt="Logo del Instituto Nuestra Señora de la Merced" width="48" height="48" decoding="async" />
                         <span class="brand-text-desktop">Instituto Nuestra Señora de la Merced</span>
                         <span class="brand-text-mobile">INSM</span>
                     </a>
                 </div>
-                <nav>
+                <nav aria-label="Navegación principal">
                     <ul>
                         <li><a href="NuestroColegio.html">Nuestro Colegio</a></li>
                         <li><a href="Contacto.html">Contacto</a></li>
                         <li><a href="Inscripcion2027.html" class="nav-highlight">Inscripciones 2027</a></li>
-                        <li class="menu-icon" onclick="toggleSideMenu()"><i class="fas fa-bars"></i></li>
+                        <li class="menu-icon"><button type="button" aria-label="Abrir menú de navegación" onclick="toggleSideMenu()"><i class="fas fa-bars" aria-hidden="true"></i></button></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <main class="empty-level-page" aria-label="Contenido pendiente de completar">
+        <main class="empty-level-page" aria-label="Información del Nivel Inicial">
             <section class="hero-section">
                 <div class="hero-content">
                     <h1>
@@ -1757,7 +1791,7 @@
                         <span class="hero-line-2">Inicial</span>
                     </h1>
                     <p>
-                        <a href="https://www.google.com" target="_blank" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;">
+                        <a href="Inscripcion2027.html" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px;" aria-label="Ver información de las inscripciones 2027">
                             Inscripciones Abiertas para el Ciclo Lectivo 2027<span class="hero-arrow"></span>
                         </a>
                     </p>
@@ -1789,9 +1823,8 @@
                                 </div>
                                 <img
                                     src="img/usuario_default.webp"
-                                    alt="Foto del Director de Nivel Secundario"
-                                    class="director-image"
-                                />
+                                    alt="Foto de la dirección del Nivel Inicial"
+                                    class="director-image" width="300" height="400" loading="lazy" decoding="async" />
                             </div>
                         </div>
 
@@ -1807,7 +1840,7 @@
                                     <div class="card-specialty-content">
                                         <h3>Informática</h3>
                                         <p>Programación, Robótica y Desarrollo de Software para el mundo digital.</p>
-                                        <a href="info/Plan de Estudios - Informática.pdf" target="_blank" class="view-more-btn">Ver Plan</a>
+                                        <a href="info/Plan de Estudios - Informática.pdf" target="_blank" rel="noopener noreferrer" class="view-more-btn">Ver Plan</a>
                                     </div>
                                 </div>
 
@@ -1815,7 +1848,7 @@
                                     <div class="card-specialty-content">
                                         <h3>Humanidades</h3>
                                         <p>Ciencias Sociales, Comunicación y Ciudadanía con pensamiento crítico.</p>
-                                        <a href="info/Plan de Estudios - Ciencias Sociales y Humanidades.pdf" target="_blank" class="view-more-btn">Ver Plan</a>
+                                        <a href="info/Plan de Estudios - Ciencias Sociales y Humanidades.pdf" target="_blank" rel="noopener noreferrer" class="view-more-btn">Ver Plan</a>
                                     </div>
                                 </div>
                             </div>
@@ -1945,28 +1978,28 @@
                                     </div>
                                     
                                     <div class="staff-nav-controls">
-                                        <button class="staff-nav-btn" id="btnPrevStaff"><i class="fas fa-arrow-left"></i></button>
-                                        <button class="staff-nav-btn" id="btnPauseStaff"><i class="fas fa-pause"></i></button>
-                                        <button class="staff-nav-btn" id="btnNextStaff"><i class="fas fa-arrow-right"></i></button>
+                                        <button class="staff-nav-btn" id="btnPrevStaff" aria-label="Personal anterior"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                                        <button class="staff-nav-btn" id="btnPauseStaff" aria-label="Pausar o reanudar personal"><i class="fas fa-pause" aria-hidden="true"></i></button>
+                                        <button class="staff-nav-btn" id="btnNextStaff" aria-label="Personal siguiente"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                                     </div>
                                 </div>
 
                                 <div class="staff-carousel-viewport" id="staffViewport">
                                     <div class="staff-carousel-track" id="staffTrack">
                                         <div class="staff-carousel-item" data-name="Gerardo Lemos" data-role="Profesora de Matemáticas">
-                                            <img src="img/usuario_default.webp" alt="Gerardo Lemos" class="staff-carousel-img">
+                                            <img src="img/usuario_default.webp" alt="Gerardo Lemos" class="staff-carousel-img" loading="lazy" decoding="async" width="288" height="486">
                                         </div>
                                         <div class="staff-carousel-item" data-name="Adela" data-role="Secretaria">
-                                            <img src="img/usuario_default.webp" alt="Adela" class="staff-carousel-img">
+                                            <img src="img/usuario_default.webp" alt="Adela" class="staff-carousel-img" loading="lazy" decoding="async" width="288" height="486">
                                         </div>
                                         <div class="staff-carousel-item" data-name="Prof. Juan Pérez" data-role="Coordinador de Curso">
-                                            <img src="img/usuario_default.webp" alt="Prof. Juan Pérez" class="staff-carousel-img">
+                                            <img src="img/usuario_default.webp" alt="Prof. Juan Pérez" class="staff-carousel-img" loading="lazy" decoding="async" width="288" height="486">
                                         </div>
                                         <div class="staff-carousel-item" data-name="Lic. María García" data-role="Gabinete Psicopedagógico">
-                                            <img src="img/usuario_default.webp" alt="Lic. María García" class="staff-carousel-img">
+                                            <img src="img/usuario_default.webp" alt="Lic. María García" class="staff-carousel-img" loading="lazy" decoding="async" width="288" height="486">
                                         </div>
                                         <div class="staff-carousel-item" data-name="Prof. Carlos López" data-role="Educación Física">
-                                            <img src="img/usuario_default.webp" alt="Prof. Carlos López" class="staff-carousel-img">
+                                            <img src="img/usuario_default.webp" alt="Prof. Carlos López" class="staff-carousel-img" loading="lazy" decoding="async" width="288" height="486">
                                         </div>
                                     </div>
                                 </div>
@@ -1991,21 +2024,21 @@
                                 Promovemos un ambiente de respeto y armonía. Te invitamos a leer nuestros acuerdos de convivencia y la reglamentación escolar vigentes para el ciclo lectivo.
                             </p>
                             <div class="aec-buttons-container" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                                <a href="info/A. E. C. 2026.pdf" target="_blank" class="aec-btn">
+                                <a href="info/A. E. C. 2026.pdf" target="_blank" rel="noopener noreferrer" class="aec-btn">
                                     <i class="fas fa-file-pdf"></i>
                                     <span>
                                         AEC 2026
                                         <small>Descargar PDF</small>
                                     </span>
                                 </a>
-                                <a href="info/Acuerdos I. Sobre Evaluación 2026.pdf" target="_blank" class="aec-btn">
+                                <a href="info/Acuerdos I. Sobre Evaluación 2026.pdf" target="_blank" rel="noopener noreferrer" class="aec-btn">
                                     <i class="fas fa-file-pdf"></i>
                                     <span>
                                         Reglamentación
                                         <small>Descargar PDF</small>
                                     </span>
                                 </a></a>
-                                <a href="info/Normas Uso Del Celular.pdf" target="_blank" class="aec-btn">
+                                <a href="info/Normas Uso Del Celular.pdf" target="_blank" rel="noopener noreferrer" class="aec-btn">
                                     <i class="fas fa-file-pdf"></i>
                                     <span>
                                         Normas de Uso del Celular
@@ -2032,16 +2065,16 @@
                         </p>
                         <p><strong>Nivel Terciario:</strong> <a href="tel:+543576421440">+54 (3576) 421-440</a></p>
                         <div class="social-icons">
-                            <a href="https://www.facebook.com/insm.nivelsuperior.1/?locale=es_LA" target="_blank"
+                            <a href="https://www.facebook.com/insm.nivelsuperior.1/?locale=es_LA" target="_blank" rel="noopener noreferrer"
                                 ><i class="fab fa-facebook-f"></i
                             ></a>
-                            <a href="https://www.youtube.com/@INSM.DIGITAL" target="_blank"
+                            <a href="https://www.youtube.com/@INSM.DIGITAL" target="_blank" rel="noopener noreferrer"
                                 ><i class="fab fa-youtube"></i
                             ></a>
-                            <a href="https://www.tiktok.com/@insm.digital" target="_blank"
+                            <a href="https://www.tiktok.com/@insm.digital" target="_blank" rel="noopener noreferrer"
                                 ><i class="fab fa-tiktok"></i
                             ></a>
-                            <a href="https://www.instagram.com/mercedariasarroyito/" target="_blank"
+                            <a href="https://www.instagram.com/mercedariasarroyito/" target="_blank" rel="noopener noreferrer"
                                 ><i class="fab fa-instagram"></i
                             ></a>
                         </div>
@@ -2065,7 +2098,7 @@
                             9 de Julio 465, Arroyito, Córdoba. Tradición y excelencia mercedaria.
                         </p>
                         <div class="get-directions">
-                            <a href="https://maps.app.goo.gl/aSiY8qYsQPtb2uJy7" target="_blank">Obtener Direcciones</a>
+                            <a href="https://maps.app.goo.gl/aSiY8qYsQPtb2uJy7" target="_blank" rel="noopener noreferrer">Obtener Direcciones</a>
                         </div>
                         <div class="footer-map-container"></div>
                     </div>
