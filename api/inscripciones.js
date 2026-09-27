@@ -105,9 +105,15 @@ module.exports = async function handler(req, res) {
 			});
 		}
 
+		// Si el alumno es de un año con correo institucional (4to, 5to, 6to), también le va una copia
+		const mailAlumno = body['Alumno - Correo Institucional'] && String(body['Alumno - Correo Institucional']).trim() !== ''
+			? body['Alumno - Correo Institucional'].trim()
+			: undefined;
+
 		await transporter.sendMail({
 			from: `"Inscripciones INSM" <${process.env.GMAIL_USER}>`,
 			to: process.env.MAIL_TO || process.env.GMAIL_USER,
+			cc: mailAlumno,
 			replyTo: body['Responsable 1 - Correo Electrónico'] || undefined,
 			subject: `Nueva inscripción 2027 - ${body['Alumno - Nombre y Apellido']}`,
 			html: htmlBody,
