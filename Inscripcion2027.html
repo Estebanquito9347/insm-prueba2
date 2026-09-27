@@ -1294,6 +1294,18 @@
 										<option value="Informática">Informática</option>
 									</select>
 								</div>
+								<div class="form-group" id="mail-institucional-group" style="display: none;">
+									<label for="alumno-mail-institucional">Correo institucional del Alumno/a</label>
+									<input
+										type="email"
+										id="alumno-mail-institucional"
+										name="Alumno - Correo Institucional"
+										pattern="[a-zA-Z0-9._%+-]+@institutolamerced\.edu\.ar"
+										oninvalid="this.setCustomValidity('El correo debe ser el institucional, terminado en @institutolamerced.edu.ar')"
+										oninput="this.setCustomValidity('')"
+										placeholder="nombre.apellido@institutolamerced.edu.ar"
+									/>
+								</div>
 							</fieldset>
 
 							<fieldset class="inscripcion-fieldset">
@@ -1665,6 +1677,11 @@
 						orientacionGroup.style.display = 'none';
 						orientacionSelect.required = false;
 						orientacionSelect.value = '';
+						const mailInstGroup = document.getElementById('mail-institucional-group');
+						const mailInstInput = document.getElementById('alumno-mail-institucional');
+						mailInstGroup.style.display = 'none';
+						mailInstInput.required = false;
+						mailInstInput.value = '';
 					}
 				});
 			}
@@ -1672,14 +1689,21 @@
 				alumnoAnioSelect.addEventListener('change', function () {
 					const orientacionGroup = document.getElementById('orientacion-group');
 					const orientacionSelect = document.getElementById('orientacion');
+					const mailInstGroup = document.getElementById('mail-institucional-group');
+					const mailInstInput = document.getElementById('alumno-mail-institucional');
 					const aniosConOrientacion = ['4° Año', '5° Año', '6° Año'];
 					if (aniosConOrientacion.includes(this.value)) {
 						orientacionGroup.style.display = 'block';
 						orientacionSelect.required = true;
+						mailInstGroup.style.display = 'block';
+						mailInstInput.required = true;
 					} else {
 						orientacionGroup.style.display = 'none';
 						orientacionSelect.required = false;
 						orientacionSelect.value = '';
+						mailInstGroup.style.display = 'none';
+						mailInstInput.required = false;
+						mailInstInput.value = '';
 					}
 				});
 			}
@@ -1706,6 +1730,7 @@
 							formInscripcion.reset();
 							document.getElementById('anio-group').style.display = 'none';
 							document.getElementById('orientacion-group').style.display = 'none';
+							document.getElementById('mail-institucional-group').style.display = 'none';
 						} else {
 							alert('Error: ' + (data.error || 'No se pudo enviar la inscripción.'));
 						}
