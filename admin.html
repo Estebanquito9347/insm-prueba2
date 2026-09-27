@@ -13,108 +13,22 @@
             --text-color: #333333;
             --border-color: #e2e8f0;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            background: var(--card-bg);
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            margin: 0;
-            color: var(--primary-color);
-            font-size: 24px;
-        }
-
-        .btn-refresh {
-            background-color: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-refresh:hover {
-            background-color: #2980b9;
-        }
-
-        .table-container {
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 14px;
-        }
-
-        th {
-            background-color: #f1f5f9;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        tr:hover {
-            background-color: #f8fafc;
-        }
-
-        .badge {
-            background-color: #e0f2fe;
-            color: #0369a1;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .no-data {
-            text-align: center;
-            padding: 40px;
-            color: #64748b;
-        }
-
-        /* Estilos para el Login y Modal de Edición */
-        #login-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000;
-        }
-        .login-box, .modal-content {
-            background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 100%; max-width: 400px;
-        }
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 999;
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; background: var(--card-bg); padding: 20px 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { margin: 0; color: var(--primary-color); font-size: 24px; }
+        .btn-refresh { background-color: var(--accent-color); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: 600; }
+        .btn-refresh:hover { background-color: #2980b9; }
+        .table-container { background: var(--card-bg); border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); font-size: 14px; }
+        th { background-color: #f1f5f9; color: var(--primary-color); font-weight: 600; }
+        tr:hover { background-color: #f8fafc; }
+        .badge { background-color: #e0f2fe; color: #0369a1; padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .no-data { text-align: center; padding: 40px; color: #64748b; }
+        #login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+        .login-box, .modal-content { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 100%; max-width: 400px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 999; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
         .form-group input { width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 5px; }
@@ -126,7 +40,6 @@
 </head>
 <body>
 
-    <!-- CAPA DE LOGIN -->
     <div id="login-overlay">
         <div class="login-box">
             <h2 style="margin-top:0; color: var(--primary-color);">Acceso Restringido</h2>
@@ -139,7 +52,6 @@
         </div>
     </div>
 
-    <!-- PANEL PRINCIPAL -->
     <div class="container" id="admin-panel" style="display: none;">
         <header>
             <h1>📋 Inscripciones Recibidas - INSM</h1>
@@ -148,64 +60,31 @@
                 <button class="btn-refresh" onclick="cerrarSesion()" style="background-color: #e74c3c;">Salir</button>
             </div>
         </header>
-
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Alumno/a</th>
-                        <th>DNI Alumno</th>
-                        <th>Nivel / Año</th>
-                        <th>Tutor Responsable</th>
-                        <th>Teléfono Tutor</th>
-                        <th>Boletín</th>
-                        <th>Acciones</th>
+                        <th>ID</th><th>Alumno/a</th><th>DNI Alumno</th><th>Nivel / Año</th>
+                        <th>Tutor Responsable</th><th>Teléfono Tutor</th><th>Boletín</th><th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody id="tabla-cuerpo">
-                    <tr>
-                        <td colspan="8" class="no-data">Cargando inscripciones...</td>
-                    </tr>
+                    <tr><td colspan="8" class="no-data">Cargando inscripciones...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- MODAL DE EDICIÓN -->
     <div class="modal-overlay" id="edit-modal">
         <div class="modal-content">
             <h3 style="margin-top:0; color: var(--primary-color);">Editar Inscripción</h3>
             <form id="edit-form" onsubmit="guardarEdicion(event)">
                 <input type="hidden" id="edit-id">
-                <div class="form-group">
-                    <label>Nombre Alumno:</label>
-                    <input type="text" id="edit-nombre" required>
-                </div>
-                <div class="form-group">
-                    <label>Apellido Alumno:</label>
-                    <input type="text" id="edit-apellido" required>
-                </div>
-                <div class="form-group">
-                    <label>DNI Alumno:</label>
-                    <input type="text" id="edit-dni" required>
-                </div>
-                <div class="form-group">
-                    <label>Nombre Tutor:</label>
-                    <input type="text" id="edit-tutor-nombre" required>
-                </div>
-                <div class="form-group">
-                    <label>Apellido Tutor:</label>
-                    <input type="text" id="edit-tutor-apellido" required>
-                </div>
-                <div class="form-group">
-                    <label>Teléfono Tutor:</label>
-                    <input type="text" id="edit-tutor-telefono" required>
-                </div>
-                <div class="form-group">
-                    <label>Email Tutor:</label>
-                    <input type="email" id="edit-tutor-email">
-                </div>
+                <div class="form-group"><label>Nombre y Apellido Alumno:</label><input type="text" id="edit-alumno-nombre" required></div>
+                <div class="form-group"><label>DNI Alumno:</label><input type="text" id="edit-dni" required></div>
+                <div class="form-group"><label>Nombre y Apellido Tutor:</label><input type="text" id="edit-resp1-nombre" required></div>
+                <div class="form-group"><label>Teléfono Tutor:</label><input type="text" id="edit-resp1-telefono" required></div>
+                <div class="form-group"><label>Email Tutor:</label><input type="email" id="edit-resp1-email"></div>
                 <div style="display: flex; gap: 10px;">
                     <button type="submit" class="btn-save">Guardar Cambios</button>
                     <button type="button" class="btn-refresh" style="background-color: #95a5a6; width: 100%;" onclick="cerrarModal()">Cancelar</button>
@@ -217,25 +96,27 @@
     <script>
         let listaGlobal = [];
 
+        function escapeHtml(value) {
+            const div = document.createElement('div');
+            div.textContent = value === null || value === undefined ? '' : String(value);
+            return div.innerHTML;
+        }
+
         async function intentarLogin() {
             const pass = document.getElementById('admin-pass').value;
             const errorP = document.getElementById('login-error');
-
             try {
                 const res = await fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify({ password: pass })
                 });
                 const data = await res.json();
-
-                if (data.success) {
-                    sessionStorage.setItem('admin_auth', 'true');
-                    document.getElementById('login-overlay').style.display = 'none';
-                    document.getElementById('admin-panel').style.display = 'block';
-                    cargarInscripciones();
+                if (res.ok && data.ok) {
+                    mostrarPanel();
                 } else {
-                    errorP.textContent = 'Contraseña incorrecta.';
+                    errorP.textContent = data.error || 'Contraseña incorrecta.';
                     errorP.style.display = 'block';
                 }
             } catch (err) {
@@ -244,76 +125,107 @@
             }
         }
 
-        function cerrarSesion() {
-            sessionStorage.removeItem('admin_auth');
+        function mostrarPanel() {
+            document.getElementById('login-overlay').style.display = 'none';
+            document.getElementById('admin-panel').style.display = 'block';
+            cargarInscripciones();
+        }
+
+        async function cerrarSesion() {
+            await fetch('/api/logout', { method: 'POST', credentials: 'include' });
             location.reload();
         }
 
-        // Verificar si ya estaba logueado en esta pestaña
-        window.onload = () => {
-            if (sessionStorage.getItem('admin_auth') === 'true') {
-                document.getElementById('login-overlay').style.display = 'none';
-                document.getElementById('admin-panel').style.display = 'block';
-                cargarInscripciones();
+        window.onload = async () => {
+            try {
+                const res = await fetch('/api/session', { credentials: 'include' });
+                if (res.ok) mostrarPanel();
+            } catch (err) {
+                // Sin sesión activa: se queda en la pantalla de login.
             }
         };
 
         async function cargarInscripciones() {
             const tbody = document.getElementById('tabla-cuerpo');
-            tbody.innerHTML = `<tr><td colspan="8" class="no-data">Cargando inscripciones...</td></tr>`;
-
+            tbody.innerHTML = '<tr><td colspan="8" class="no-data">Cargando inscripciones...</td></tr>';
             try {
-                const response = await fetch('/api/inscripciones');
+                const response = await fetch('/api/inscripciones', { credentials: 'include' });
+                if (response.status === 401) {
+                    document.getElementById('admin-panel').style.display = 'none';
+                    document.getElementById('login-overlay').style.display = 'flex';
+                    return;
+                }
                 if (!response.ok) throw new Error('Error al obtener datos');
-                
                 listaGlobal = await response.json();
 
                 if (listaGlobal.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8" class="no-data">No hay inscripciones registradas todavía.</td></tr>`;
+                    tbody.innerHTML = '<tr><td colspan="8" class="no-data">No hay inscripciones registradas todavía.</td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = '';
                 listaGlobal.forEach(item => {
                     const tr = document.createElement('tr');
-                    tr.innerHTML = `
-                        <td><strong>#${item.id}</strong></td>
-                        <td>${item.nombre} ${item.apellido}</td>
-                        <td>${item.dni}</td>
-                        <td><span class="badge">Nivel ${item.nivel_id} - Año ${item.anio_id}</span></td>
-                        <td>${item.tutor_nombre} ${item.tutor_apellido}</td>
-                        <td>${item.tutor_telefono}</td>
-                        <td>
-                            ${item.boletin_path 
-                                ? `<a href="/uploads/${item.boletin_path}" target="_blank" style="color: #3498db; text-decoration: none; font-weight: 600;">📄 Ver Archivo</a>` 
-                                : '<span style="color: #94a3b8;">Sin archivo</span>'}
-                        </td>
-                        <td>
-                            <button class="btn-edit" onclick="abrirModal(${item.id})">✏️ Editar</button>
-                        </td>
-                    `;
+
+                    const tdId = document.createElement('td');
+                    tdId.innerHTML = `<strong>#${escapeHtml(item.id)}</strong>`;
+
+                    const tdAlumno = document.createElement('td');
+                    tdAlumno.textContent = item.alumno_nombre;
+
+                    const tdDni = document.createElement('td');
+                    tdDni.textContent = item.dni;
+
+                    const tdNivel = document.createElement('td');
+                    const badge = document.createElement('span');
+                    badge.className = 'badge';
+                    badge.textContent = `${item.nivel}${item.anio ? ' - ' + item.anio : ''}${item.orientacion ? ' (' + item.orientacion + ')' : ''}`;
+                    tdNivel.appendChild(badge);
+
+                    const tdTutor = document.createElement('td');
+                    tdTutor.textContent = item.resp1_nombre;
+
+                    const tdTelefono = document.createElement('td');
+                    tdTelefono.textContent = item.resp1_telefono;
+
+                    const tdBoletin = document.createElement('td');
+                    if (item.boletin_path) {
+                        const a = document.createElement('a');
+                        a.href = `/api/uploads/${encodeURIComponent(item.boletin_path)}`;
+                        a.target = '_blank';
+                        a.rel = 'noopener noreferrer';
+                        a.style.cssText = 'color:#3498db;text-decoration:none;font-weight:600;';
+                        a.textContent = '📄 Ver Archivo';
+                        tdBoletin.appendChild(a);
+                    } else {
+                        tdBoletin.innerHTML = '<span style="color:#94a3b8;">Sin archivo</span>';
+                    }
+
+                    const tdAcciones = document.createElement('td');
+                    const btn = document.createElement('button');
+                    btn.className = 'btn-edit';
+                    btn.textContent = '✏️ Editar';
+                    btn.addEventListener('click', () => abrirModal(item.id));
+                    tdAcciones.appendChild(btn);
+
+                    tr.append(tdId, tdAlumno, tdDni, tdNivel, tdTutor, tdTelefono, tdBoletin, tdAcciones);
                     tbody.appendChild(tr);
                 });
-
             } catch (error) {
                 console.error(error);
-                tbody.innerHTML = `<tr><td colspan="8" class="no-data" style="color: #e74c3c;">Error al cargar los datos del servidor.</td></tr>`;
+                tbody.innerHTML = '<tr><td colspan="8" class="no-data" style="color:#e74c3c;">Error al cargar los datos del servidor.</td></tr>';
             }
         }
 
         function abrirModal(id) {
             const item = listaGlobal.find(d => d.id === id);
             if (!item) return;
-
             document.getElementById('edit-id').value = item.id;
-            document.getElementById('edit-nombre').value = item.nombre || '';
-            document.getElementById('edit-apellido').value = item.apellido || '';
+            document.getElementById('edit-alumno-nombre').value = item.alumno_nombre || '';
             document.getElementById('edit-dni').value = item.dni || '';
-            document.getElementById('edit-tutor-nombre').value = item.tutor_nombre || '';
-            document.getElementById('edit-tutor-apellido').value = item.tutor_apellido || '';
-            document.getElementById('edit-tutor-telefono').value = item.tutor_telefono || '';
-            document.getElementById('edit-tutor-email').value = item.tutor_email || '';
-
+            document.getElementById('edit-resp1-nombre').value = item.resp1_nombre || '';
+            document.getElementById('edit-resp1-telefono').value = item.resp1_telefono || '';
+            document.getElementById('edit-resp1-email').value = item.resp1_email || '';
             document.getElementById('edit-modal').style.display = 'flex';
         }
 
@@ -325,23 +237,20 @@
             event.preventDefault();
             const id = document.getElementById('edit-id').value;
             const datosActualizados = {
-                nombre: document.getElementById('edit-nombre').value,
-                apellido: document.getElementById('edit-apellido').value,
+                alumno_nombre: document.getElementById('edit-alumno-nombre').value,
                 dni: document.getElementById('edit-dni').value,
-                tutor_nombre: document.getElementById('edit-tutor-nombre').value,
-                tutor_apellido: document.getElementById('edit-tutor-apellido').value,
-                tutor_telefono: document.getElementById('edit-tutor-telefono').value,
-                tutor_email: document.getElementById('edit-tutor-email').value
+                resp1_nombre: document.getElementById('edit-resp1-nombre').value,
+                resp1_telefono: document.getElementById('edit-resp1-telefono').value,
+                resp1_email: document.getElementById('edit-resp1-email').value
             };
-
             try {
                 const res = await fetch(`/api/inscripciones/${id}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
                     body: JSON.stringify(datosActualizados)
                 });
                 const result = await res.json();
-
                 if (res.ok) {
                     alert('¡Inscripción actualizada con éxito!');
                     cerrarModal();
@@ -355,6 +264,5 @@
             }
         }
     </script>
-
 </body>
 </html>
