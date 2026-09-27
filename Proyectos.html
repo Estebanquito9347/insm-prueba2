@@ -3,23 +3,36 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Insm - Proyectos Secundario</title>
+        <meta name="description" content="Conocé los proyectos, eventos y actividades del Nivel Secundario del Instituto Nuestra Señora de la Merced de Arroyito, Córdoba." />
+        <meta name="theme-color" content="#cf0621" />
+        <link rel="canonical" href="https://webescolar-web-escolar.vercel.app/Proyectos.html" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="es_AR" />
+        <meta property="og:site_name" content="Instituto Nuestra Señora de la Merced" />
+        <meta property="og:title" content="Proyectos del Nivel Secundario | Instituto Nuestra Señora de la Merced" />
+        <meta property="og:description" content="Conocé los proyectos, eventos y actividades del Nivel Secundario del Instituto Nuestra Señora de la Merced de Arroyito, Córdoba." />
+        <meta property="og:url" content="https://webescolar-web-escolar.vercel.app/Proyectos.html" />
+        <meta property="og:image" content="https://webescolar-web-escolar.vercel.app/img/Noticias.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="preload" href="fonts/Heuristica-Regular.ttf" as="font" type="font/ttf" crossorigin />
+        <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "Instituto Nuestra Señora de la Merced", "alternateName": "INSM", "url": "https://webescolar-web-escolar.vercel.app/", "logo": "https://webescolar-web-escolar.vercel.app/img/favicon.ico", "telephone": "+54-3576-421440", "address": {"@type": "PostalAddress", "streetAddress": "9 de Julio 465", "addressLocality": "Arroyito", "addressRegion": "Córdoba", "addressCountry": "AR"}, "sameAs": ["https://www.facebook.com/insm.nivelsuperior.1/", "https://www.youtube.com/@INSM.DIGITAL", "https://www.tiktok.com/@insm.digital", "https://www.instagram.com/mercedariasarroyito/"]}</script>
+        <title>Proyectos del Nivel Secundario | Instituto Nuestra Señora de la Merced</title>
         <style>
             /* --- Fuentes --- */
             @font-face {
-                font-family: 'Heuristica';
+                font-family: 'Heuristica'; font-display: swap;
                 src: url('fonts/Heuristica-Regular.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
             }
             @font-face {
-                font-family: 'Heuristica';
+                font-family: 'Heuristica'; font-display: swap;
                 src: url('fonts/Heuristica-Bold.ttf') format('truetype');
                 font-weight: bold;
                 font-style: normal;
             }
             @font-face {
-                font-family: 'ProximaNova';
+                font-family: 'ProximaNova'; font-display: swap;
                 src: url('fonts/ProximaNova-Regular.ttf') format('truetype');
                 font-weight: normal;
                 font-style: normal;
@@ -1574,7 +1587,7 @@
                         const safeSummary = processLongWords(summary, '16px Heuristica', cardWidth);
 
                         card.innerHTML = `
-                            <img src="${proj.image || ''}" alt="${proj.title || ''}" loading="lazy" />
+                            <img src="${proj.image || ''}" alt="${proj.title || ''}" loading="lazy" decoding="async" />
                             <div class="projects-card-content">
                                 <p class="date">${proj.displayDate || ''}</p>
                                 <h4>${safeTitle}</h4>
