@@ -1300,10 +1300,10 @@
 										type="email"
 										id="alumno-mail-institucional"
 										name="Alumno - Correo Institucional"
-										pattern="[a-zA-Z0-9._%+\-]+@institutolamerced\.edu\.ar"
-										oninvalid="this.setCustomValidity('El correo debe ser el institucional, terminado en @institutolamerced.edu.ar')"
+										pattern="[a-zA-Z]+(\.[a-zA-Z]+)?(\.sec)?[0-9]*@institutolamerced\.edu\.ar"
+										oninvalid="this.setCustomValidity('El correo debe tener el formato nombre.apellido.sec@institutolamerced.edu.ar, nombreapellido.sec@institutolamerced.edu.ar o nombreapellido@institutolamerced.edu.ar')"
 										oninput="this.setCustomValidity('')"
-										placeholder="nombre.apellido@institutolamerced.edu.ar"
+										placeholder="nombre.apellido.sec@institutolamerced.edu.ar"
 									/>
 								</div>
 							</fieldset>
