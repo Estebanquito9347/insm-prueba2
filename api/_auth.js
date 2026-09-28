@@ -6,8 +6,8 @@ const COOKIE_NAME = 'insm_admin';
 const DURACION_SEG = 60 * 60 * 8; // 8 horas
 
 function secreto() {
-  const s = process.env.SESSION_SECRET;
-  if (!s || s.length < 16) throw new Error('Falta SESSION_SECRET (mínimo 16 caracteres)');
+  const s = process.env.SESSION_SECRET2;
+  if (!s || s.length < 16) throw new Error('Falta SESSION_SECRET2 (mínimo 16 caracteres)');
   return s;
 }
 

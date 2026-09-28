@@ -11,7 +11,7 @@ function iguales(a, b) {
 module.exports = async (req, res) => {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Método no permitido' });
 
-  const esperada = process.env.ADMIN_PASSWORD;
+  const esperada = process.env.ADMIN_PASSWORD2;
   if (!esperada) return res.status(500).json({ error: 'Servidor sin contraseña configurada' });
 
   const { password } = req.body || {};
