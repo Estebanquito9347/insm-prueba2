@@ -1722,19 +1722,6 @@
 				}
 			});
 
-			// --- Lógica del Menú Desplegable (Global para móvil) ---
-			function toggleMenu() {
-				const menu = document.getElementById('dropdownMenu');
-				if (menu) menu.classList.toggle('show');
-			}
-
-			document.addEventListener('keydown', function (e) {
-				if (e.key === 'Escape') {
-					const menu = document.getElementById('dropdownMenu');
-					if (menu) menu.classList.remove('show');
-				}
-			});
-
 		function scrollToTopSmooth() {
 				const startPosition = window.pageYOffset;
 				const duration = 1200;
@@ -1755,7 +1742,7 @@
 				runHeroAnimation();
 
 				// Verificación de IDs Críticos del DOM
-				const criticalIDs = ['dropdownMenu', 'vTimeline', 'vProgress'];
+				const criticalIDs = ['vTimeline', 'vProgress'];
 				criticalIDs.forEach(id => {
 					if (!document.getElementById(id)) {
 						console.error(`Error: El contenedor esencial con ID '${id}' no fue encontrado en el DOM.`);
