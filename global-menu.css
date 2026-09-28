@@ -227,11 +227,6 @@ main > section:not(.hero-section) img:not(.header-main .logo img) {
   filter: saturate(0.82) contrast(1.02);
 }
 
-main .content-image,
-main .v-image {
-  display: none !important;
-}
-
 .main-content-section,
 .content-container,
 .content-block,
