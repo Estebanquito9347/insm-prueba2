@@ -13,7 +13,10 @@
 			content="INSM,Insm,insm, Instituto Nuestra Señora de la Merced, educación, colegio, escuela, Arroyito, Córdoba, nivel inicial, primaria, secundaria, terciario, formación docente, valores mercedarios, Santa Maria del Cervellon"
 		/>
 		<meta name="author" content="Instituto Nuestra Señora de la Merced" />
-		<meta name="robots" content="index, follow" />
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<meta name="author" content="Instituto Nuestra Señora de la Merced" />
+		<meta name="theme-color" content="#1a4f8d" />
+		<link rel="canonical" href="https://webescolar-web-escolar.vercel.app/" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="Instituto Nuestra Señora de la Merced | INSM" />
@@ -21,15 +24,16 @@
 			property="og:description"
 			content="Comunidad educativa en Arroyito, Córdoba. Formación integral en valores y excelencia académica para todos los niveles educativos."
 		/>
-		<meta property="og:image" content="img/entrada.webp" />
+		<meta property="og:url" content="https://webescolar-web-escolar.vercel.app/" />
+		<meta property="og:image" content="https://webescolar-web-escolar.vercel.app/img/entrada.webp" />
 
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:title" content="Instituto Nuestra Señora de la Merced | INSM" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Instituto Nuestra Señora de la Merced | INSM" />
 		<meta
 			property="twitter:description"
 			content="Comunidad educativa en Arroyito, Córdoba. Formación integral en valores y excelencia académica para todos los niveles educativos."
 		/>
-		<meta property="twitter:image" content="img/entrada.webp" />
+		<meta name="twitter:image" content="https://webescolar-web-escolar.vercel.app/img/entrada.webp" />
 
 		<style>
 			/* --- Fuentes --- */
@@ -38,6 +42,7 @@
 				src: url('fonts/Heuristica-Regular.ttf') format('truetype');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			@font-face {
@@ -45,6 +50,7 @@
 				src: url('fonts/Heuristica-Bold.ttf') format('truetype');
 				font-weight: bold;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			@font-face {
@@ -52,6 +58,7 @@
 				src: url('fonts/ProximaNova-Regular.ttf') format('truetype');
 				font-weight: normal;
 				font-style: normal;
+				font-display: swap;
 			}
 
 			* {
@@ -2349,12 +2356,19 @@
 					box-sizing: border-box;
 				}
 			}
-		</style>
+		@media (prefers-reduced-motion: reduce) {
+                *, *::before, *::after {
+                    animation-duration: 0.01ms !important;
+                    animation-iteration-count: 1 !important;
+                    transition-duration: 0.01ms !important;
+                    scroll-behavior: auto !important;
+                }
+            }
+        </style>
 		<link rel="icon" href="img/favicon.ico" type="image/ico" />
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-		/>
+		<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'" />
+		<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" /></noscript>
 			<link rel="stylesheet" href="global-menu.css" />
 	</head>
 	<body ontouchstart="">
@@ -2362,7 +2376,7 @@
 			<div class="header-main">
 				<div class="logo">
 					<a href="index.html">
-						<img src="img/favicon.ico" alt="Logo INSM" />
+						<img src="img/favicon.ico" alt="Logo del Instituto Nuestra Señora de la Merced" width="48" height="48" decoding="async" />
 						<span class="brand-text-desktop">Instituto Nuestra Señora de la Merced</span>
 						<span class="brand-text-mobile">INSM</span>
 					</a>
@@ -2425,14 +2439,14 @@
 
 					<div class="college-gallery">
 						<div class="gallery-col col-1">
-							<img src="img/entrada.webp" alt="entradas" />
-							<img src="img/20250806_092322.webp" alt="Convivencia" />
-							<img src="img/Cooperativa 1.webp" alt="Cooperativa" />
+							<img src="img/entrada.webp" alt="entradas" loading="lazy" decoding="async" />
+							<img src="img/20250806_092322.webp" alt="Convivencia" loading="lazy" decoding="async" />
+							<img src="img/Cooperativa 1.webp" alt="Cooperativa" loading="lazy" decoding="async" />
 						</div>
 						<div class="gallery-col col-2">
-							<img src="img/Historia.webp" alt="Cuidado Ambiente" />
-							<img src="img/Cooperativa- bolsas.webp" alt="Cooperativa Bolsas" />
-							<img src="img/sala2.webp" alt="Cooperativa 2" />
+							<img src="img/Historia.webp" alt="Cuidado Ambiente" loading="lazy" decoding="async" />
+							<img src="img/Cooperativa- bolsas.webp" alt="Cooperativa Bolsas" loading="lazy" decoding="async" />
+							<img src="img/sala2.webp" alt="Cooperativa 2" loading="lazy" decoding="async" />
 						</div>
 					</div>
 				</div>
@@ -2454,7 +2468,7 @@
 						<div class="level-content active" data-level-content="inicial">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/entrada.webp" alt="Imagen pendiente del Nivel Inicial" />
+									<img src="img/entrada.webp" alt="Imagen pendiente del Nivel Inicial" loading="lazy" decoding="async" />
 								</div>
 								<div class="level-info">
 									<h4>Inicial</h4>
@@ -2467,7 +2481,7 @@
 						<div class="level-content" data-level-content="primario">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/IMG-20250414-WA0023.webp" alt="Imagen pendiente del Nivel Primario" />
+									<img src="img/IMG-20250414-WA0023.webp" alt="Imagen pendiente del Nivel Primario" loading="lazy" decoding="async" />
 								</div>
 								<div class="level-info">
 									<h4>Primario</h4>
@@ -2477,7 +2491,7 @@
 						</div>
 						<div class="level-content" data-level-content="secundario">
 							<div class="level-grid">
-								<div class="level-image"><img src="img/VIAJES.webp" alt="Nivel Secundario" /></div>
+								<div class="level-image"><img src="img/VIAJES.webp" alt="Nivel Secundario" loading="lazy" decoding="async" /></div>
 								<div class="level-info">
 									<h4>Secundario</h4>
 									<div class="age">Edades 13-18</div>
@@ -2489,7 +2503,7 @@
 						<div class="level-content" data-level-content="terciario">
 							<div class="level-grid">
 								<div class="level-image">
-									<img src="img/DIA_del_profesor.webp" alt="Imagen pendiente del Nivel Terciario" />
+									<img src="img/DIA_del_profesor.webp" alt="Imagen pendiente del Nivel Terciario" loading="lazy" decoding="async" />
 								</div>
 								<div class="level-info">
 									<h4>Terciario</h4>
@@ -2635,7 +2649,7 @@
 							target="_blank"
 							class="view-more-btn"
 							style="text-decoration: none"
-						>
+						 rel="noopener noreferrer">
 							Ver Video Recorrido <i class="fas fa-external-link-alt" style="margin-left: 8px"></i>
 						</a>
 					</div>
@@ -2671,16 +2685,16 @@
 						<p><strong>Nivel Terciario:</strong> <a href="tel:+543576421440">+54 (3576) 421-440</a></p>
 						<div class="social-icons">
 							<a href="https://www.facebook.com/insm.nivelsuperior.1/?locale=es_LA" target="_blank"
-								><i class="fab fa-facebook-f"></i
+								 rel="noopener noreferrer"><i class="fab fa-facebook-f"></i
 							></a>
 							<a href="https://www.youtube.com/@INSM.DIGITAL" target="_blank"
-								><i class="fab fa-youtube"></i
+								 rel="noopener noreferrer"><i class="fab fa-youtube"></i
 							></a>
 							<a href="https://www.tiktok.com/@insm.digital" target="_blank"
-								><i class="fab fa-tiktok"></i
+								 rel="noopener noreferrer"><i class="fab fa-tiktok"></i
 							></a>
 							<a href="https://www.instagram.com/mercedariasarroyito/" target="_blank"
-								><i class="fab fa-instagram"></i
+								 rel="noopener noreferrer"><i class="fab fa-instagram"></i
 							></a>
 						</div>
 					</div>
@@ -2703,7 +2717,7 @@
 							9 de Julio 465, Arroyito, Córdoba. Tradición y excelencia mercedaria.
 						</p>
 						<div class="get-directions">
-							<a href="https://maps.app.goo.gl/aSiY8qYsQPtb2uJy7" target="_blank">Obtener Direcciones</a>
+							<a href="https://maps.app.goo.gl/aSiY8qYsQPtb2uJy7" target="_blank" rel="noopener noreferrer">Obtener Direcciones</a>
 						</div>
 						<div class="footer-map-container"></div>
 					</div>
